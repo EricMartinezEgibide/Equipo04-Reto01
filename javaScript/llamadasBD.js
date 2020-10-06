@@ -1,6 +1,11 @@
 var usuarios = [];
 var avisos = [];
 
+
+//CONSULTAS PELIGROSAS
+
+
+
 //FUNCIONES USUARIOS Atributos: nombre, apellido1, apellido2, nick, pass
 
 function crearUsuario(){//EN PROGRESO
@@ -14,23 +19,14 @@ function crearUsuario(){//EN PROGRESO
     let usuario = {nombre:nombreLocal, apellido1:apellido1Local, apellido2:apellido2Local, nick:nickLocal, pass:passLocal};
     usuarios.push(usuario);
 
-    actualizarUsuarios();
-}
 
-
-function actualizarUsuarios() { //EN PROGRESO
-/*
-    localStorage.setItem('datosBD/usuarios', JSON.stringify(usuarios));
-
-    // Envio de los datos al servidor.
-    fetch("http://localhost:63342/ejemploFetchLocalStorage/datosRecibidos.php", {
+    fetch("http://localhost:63342/Equipo04-Reto01/datosBD/usuarios.php", {
         method: 'POST',
         body: JSON.stringify(usuarios),
         headers: {
             'Content-Type': 'application/json'
         }
     }).catch(error => console.log('Error:', error));
- */
 }
 
 
@@ -39,6 +35,10 @@ function borrarUsuario(){
 }
 
 function buscarUsuario(){
+
+}
+
+function leerUsuarios(){
 
 }
 
@@ -59,4 +59,8 @@ function borrarAviso(){
 
 function buscarAviso(){
 
+}
+
+function leerUsuarios(){
+    
 }
