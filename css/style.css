@@ -61,7 +61,7 @@ header h1{
 	float: left;
 	margin: 0 10px;
 }
-.usericon{
+.usericon, .passicon{
 	width: 26px;
 	float: left;
 	text-align: center;
@@ -69,7 +69,7 @@ header h1{
 .btn{
 	width: 100%;
 	background-color: #FFBE46;
-	border: 2px solid #F49F0A;
+	border: 2px solid #FF8110;
 	color: black;
 	padding: 5px;
 	font-size: 30px;
@@ -77,15 +77,24 @@ header h1{
 	margin: 12px 0;
 }
 .btn:active{
-	background-color: #F49F0A;
+	background-color: #FF8110;
 }
 /*Tablet*/
-@media only screen and (min-width: 401px) and (max-width: 900px){
-
+@media only screen and  (min-width: 401px) and (max-width: 900px){
+	h1{
+		padding-top: 20%;
+		color: red;
+	}
 }
 /*Ordenador*/
 @media only screen and (min-width: 901px){
+	body{
+		background-image: url(../img/newyork.jpg);
+	}
+	header h1{
+		padding-top: 3%;
+	}
 	.btn:hover{
-		background-color: #F49F0A;
+		background-color: #FF8110;
 	}
 }
