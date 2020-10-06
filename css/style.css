@@ -18,6 +18,9 @@ body{
 	font-family: 'Montserrat', sans-serif;
 	margin: 2%;
 }
+main{
+	margin: 10%;
+}
 header h1{
 	color: #F49F0A;
 	font-size: 60px;
@@ -73,12 +76,16 @@ header h1{
 	cursor: pointer;
 	margin: 12px 0;
 }
-
+.btn:active{
+	background-color: #F49F0A;
+}
 /*Tablet*/
-@media only screen (min-width: 401px) and (max-width: 900px){
+@media only screen and (min-width: 401px) and (max-width: 900px){
 
 }
 /*Ordenador*/
-@media only screen (min-width: 901px){
-
+@media only screen and (min-width: 901px){
+	.btn:hover{
+		background-color: #F49F0A;
+	}
 }
