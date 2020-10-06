@@ -4,22 +4,29 @@ var avisos = [];
 
 //CONSULTAS PELIGROSAS
 
-/*function reiniciarBD(){
-    fetch("http://localhost:63342/Equipo04-Reto01/datosBD/usuarios.php", {
-        method: 'DELETE',
-    }).catch(error => console.log('Error:', error));
-}
+function reiniciarBD(){//Work in progress
+
+/*
+    fetch("http://localhost:63342/Equipo04-Reto01/datosBD/usuarios.php",
+        {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(),
+        })
 
  */
 
 
+}
+
+
+
+
 //FUNCIONES USUARIOS Atributos: nombre, apellido1, apellido2, nick, pass
 
-function crearUsuario(){//EN PROGRESO
-
-    console.log("AA")
-
-
+function crearUsuario(){
     nombreLocal = document.getElementById("txNombre").value;
     apellido1Local = document.getElementById("txApellido1").value;
     apellido2Local = document.getElementById("txApellido2").value;
@@ -30,9 +37,11 @@ function crearUsuario(){//EN PROGRESO
     let usuario = {nombre:nombreLocal, apellido1:apellido1Local, apellido2:apellido2Local, nick:nickLocal, pass:passLocal};
     usuarios.push(usuario);
 
-
     localStorage.setItem('datosUsuario', JSON.stringify(usuarios));
 
+    //CON FICHERO
+
+    /*
     fetch("http://localhost:63342/Equipo04-Reto01/datosBD/usuarios.php", {
 
         method: 'POST',
@@ -43,9 +52,8 @@ function crearUsuario(){//EN PROGRESO
     }).catch(error => console.log('Error:', error));
 
     console.log("BB")
-
+*/
 }
-
 
 function borrarUsuario(){
 
@@ -56,18 +64,10 @@ function buscarUsuario(){
 }
 
 function leerUsuarios(){
-    console.log("Me ejecuto");
 
-    let usuariosString;
-
-    document.getElementById("todosFichero").value = "";
-    fetch('http://localhost:63342/Equipo04-Reto01/datosBD/usuarios.php')
-        .then(response => response.json()) // convierte la respuesta recibida en json. También es una promesa.
-        .then(data => data.forEach(elemento => usuariosString += elemento.nombre + " " + elemento.edad + "\n"));
-
-
-    console.log(usuariosString);
-
+    for (var i = 0; i < localStorage.length; i++){
+        console.log(localStorage.getItem(i))
+    }
 }
 
 
