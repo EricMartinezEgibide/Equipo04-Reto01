@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4ced4bf8-73b2-495e-b6a2-54fd8b470e61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javaScript/llamadasBD.js" beforeDir="false" afterPath="$PROJECT_DIR$/javaScript/llamadasBD.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +31,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="HTML File" />
       </list>
     </option>
@@ -50,7 +52,9 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/html" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../JS y HTML/ejemploFetchLocalStorage" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -63,12 +67,20 @@
       <recent name="C:\Users\2GDAW03\Desktop\REPOSITORIOS\RETO 01\Equipo04-Reto01\html" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.pruebaBD.html">
     <configuration name="login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Equipo04-Reto01/html/login.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="pruebaBD.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Equipo04-Reto01/javaScript/pruebaBD.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="llamadasBD.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/javaScript/llamadasBD.js" working-dir="$PROJECT_DIR$/javaScript">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.pruebaBD.html" />
+        <item itemvalue="Node.js.llamadasBD.js" />
         <item itemvalue="JavaScript Debug.login.html" />
       </list>
     </recent_temporary>
@@ -106,13 +118,21 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="779" y="358" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2048.1112@0.0.2048.1112" timestamp="1601965926071" />
-    <state x="755" y="303" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601895007318">
+    <state x="755" y="303" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601971081113">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="755" y="303" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1601895007318" />
+    <state x="755" y="303" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1601971081113" />
+    <state x="805" y="311" key="FileChooserDialogImpl" timestamp="1601970355911">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="805" y="311" key="FileChooserDialogImpl/0.0.2048.1112@0.0.2048.1112" timestamp="1601970355911" />
     <state x="526" y="201" key="SettingsEditor" timestamp="1601894548876">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="526" y="201" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1601894548876" />
+    <state x="687" y="244" width="672" height="678" key="search.everywhere.popup" timestamp="1601972167670">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="687" y="244" width="672" height="678" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1601972167670" />
   </component>
 </project>
