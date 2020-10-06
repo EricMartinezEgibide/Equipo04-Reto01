@@ -16,41 +16,69 @@ body{
 main{
 	display: flex;
 }
-nav{
-	background-color: black;
-	display: flex;
-	flex-direction: column;
-	height: 100px;
-	width: 100%;
+nav ul {
+  	display: none;
+  	padding: 0;
+  	margin: 0;
+  	width: 100%;
 }
-a{
+
+nav img {
+  	width: 10%;
+  	padding: 14px 20px;
+}
+nav ul li a{
+	color: white;
 	text-decoration: none;
-	color: white;
-}	
-ul{
+}
+
+nav ul li {
+	background-color: black;
+	width: 100%;
+	padding: 5%;
+	margin: 0;
+	font-size: 2em;
+}
+
+.close{
+	display: none;
+}
+ul.menu{
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: center; 
+	height: 0;
+	overflow: hidden;
+	transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
 }
-li{
-	border-bottom: 2px solid #FF8110;
-	color: white;
-	font-size: xx-large;
-	list-style: none;
-	padding: 1em;
-	text-align: center;
-	width: 600px;
+#navigation:target ul.menu{
+	height: 200px;
+	transition: height 0.4s ease-in-out 0s, background-color 2s ease 0s;
 }
-.menuicon{
-	width: 600px;
-}
-.menuicon img{
-	width: 26px;
-	text-align: center;
-}
-.idioma{
+#navigation:target .logopagina{
 	display: none;
-	font-size: smaller;
-    align-self: center;
-    padding: 2%;
+}
+#navigation:target{
+	width: 100%;
+	height: 250px;
+}
+#navigation{
+	transition: 0s;
+	background-color: black;
+	width: 100%; 
+}
+#navigation:target .open{
+	display: none;
+}
+#navigation:target .close{
+	display: block;
+}
+.menu{
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+	list-style-type: none;
+}
+i{
+	width: 28px;
 }
