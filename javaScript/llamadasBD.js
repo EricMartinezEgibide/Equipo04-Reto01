@@ -4,7 +4,7 @@ var avisos = [];
 
 //CONSULTAS PELIGROSAS
 
-function reiniciarBD(){//Work in progress
+function iniciarBD(){//Work in progress
 
     //localStorage.clear();
 
@@ -22,7 +22,7 @@ function reiniciarBD(){//Work in progress
     usuario = {nombre:"Antonio", apellido1:"Mejía", apellido2:"Pastor", nick:"AntonioMej", pass:"123"};
     usuarios.push(usuario);
 
-    localStorage.setItem('datosUsuario', JSON.stringify(usuarios));
+    localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
 
 }
@@ -43,7 +43,7 @@ function crearUsuario(){
     let usuario = {nombre:nombreLocal, apellido1:apellido1Local, apellido2:apellido2Local, nick:nickLocal, pass:passLocal};
     usuarios.push(usuario);
 
-    localStorage.setItem('datosUsuario', JSON.stringify(usuarios));
+    localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
 }
 
@@ -52,7 +52,7 @@ function borrarUsuario(){
     usuarioAEliminar = "Juan33";
     let id = "";
 
-    usuarios = JSON.parse(localStorage.getItem("datosUsuario"));
+    usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
 
     for (let i = 0; i < usuarios.length; i++) {
         if(usuarios[i].nick == usuarioAEliminar){
@@ -60,35 +60,41 @@ function borrarUsuario(){
         }
     }
 
-    console.log("ID: " + id)
-
-
     usuarios.splice(id, 1);
-    localStorage.setItem('datosUsuario', JSON.stringify(usuarios));
-
-
-
+    localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
 }
 
-function buscarUsuario(){
+function modificarUsuario(){
+
+    usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
+
+    let posicion = usuarios.findIndex(p => p.nick == document.getElementById("txNick").value);
+
+    if (posicion != -1) {
+        usuarios[posicion].nombre = document.getElementById("txNombre").value;
+        localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        location.reload();
+    }else{
+        alert("Usuario no encontrado");
+    }
 
 }
 
 
 function leerUsuario(){
 
-    usuarios = JSON.parse(localStorage.getItem("datosUsuario"));
+    usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
 
     for (let i = 0; i < usuarios.length; i++) {
         //Aquí añadiremos los campos a rellenar a la hora de la visualización de los elementos.
         console.log(usuarios[i].nick)
     }
 
-    //document.getElementById("todosLocal").value = "";
-    //usuarios.forEach(u => document.getElementById("todosLocal").value += u.nombre + " " + u.apellido1 + "\n");
-
 }
+
+
+
 
 
 
