@@ -225,31 +225,51 @@ function crearAviso(){
     localStorage.setItem('datosAvisos', JSON.stringify(avisos));
 }
 
-function actualizarAvisos(){
-
-}
-
 function borrarAviso(){
+    /*iniciarBD();
 
+    avisoABorrar = document.getElementById("txNick2").value;
+
+    for (let i = 0; i < usuarios.length; i++) {
+        if(usuarios[i].nick == usuarioAEliminar){
+            usuarios.splice(i, 1);
+        }
+    }
+
+    localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+
+     */
 }
 
-function buscarAviso(){
+function leerAvisos(){
+    iniciarBD()
 
-}
 
-function leerUsuarios(){
+    textoAvisos = "";
 
+    avisosOrdenados = avisos;
+
+    avisosOrdenados.sort((a, b) => a.prioridad - b.prioridad);
+
+    for (let i = 0; i < avisosOrdenados.length; i++) {
+        //Aquí añadiremos los campos a rellenar a la hora de la visualización de los elementos.
+        textoAvisos += ("Titulo: " + avisosOrdenados[i].titulo + " | Descripción: " + avisosOrdenados[i].descripcion + " | Fecha: " + avisosOrdenados[i].fecha + "\n")
+    }
+
+    document.getElementById("taAvisos").value = textoAvisos;
 }
 
 //EXTRAS
 
 function fechaActual(){
-    var fecha = new Date();
-    var dd = String(fecha.getDate()).padStart(2, '0');
-    var mm = String(fecha.getMonth() + 1).padStart(2, '0'); //Enero es 0!
-    var yyyy = fecha.getFullYear();
 
-    fecha = dd + '/' + mm + '/' + yyyy;
+    var fecha = new Date();
+    var fecha = fecha.getDate() + "/"
+        + (fecha.getMonth()+1)  + "/"
+        + fecha.getFullYear() + " @ "
+        + fecha.getHours() + ":"
+        + fecha.getMinutes() + ":"
+        + fecha.getSeconds();
 
     return fecha;
 }
