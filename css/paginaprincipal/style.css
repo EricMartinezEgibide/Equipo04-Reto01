@@ -42,7 +42,7 @@ nav ul li a{
 nav ul li {
 	background-color: #FF8110;
 	width: 100vw;
-	padding: 5%;
+	padding: 4% 0;
 	margin: 0;
 	font-size: 2em;
 }
