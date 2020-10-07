@@ -4,7 +4,7 @@ let avisos = [];
 
 //CONSULTAS PELIGROSAS
 
-function iniciarBD(){//Work in progress
+function iniciarBD() {//Work in progress
 
     /*let usuario;
 
@@ -29,29 +29,35 @@ function iniciarBD(){//Work in progress
     //Al iniciar cargo los datos de del storage en el array de usuarios (De ésta manera evitamos que sean eliminados)
 
     //Si no hay nada en el array usuarios cargo los elementos del storage.
-    if(usuarios.length == 0){
+    if (usuarios.length == 0) {
 
         storageInfo = JSON.parse(localStorage.getItem("datosUsuarios"));
 
         let cantidadUsuarios = 0;
         let storage;
 
-        if(storageInfo == null){//Si storageInfo está a NUll significa que la aplicación se ha abierto por primera vez.
+        if (storageInfo == null) {//Si storageInfo está a NUll significa que la aplicación se ha abierto por primera vez.
             cantidadUsuarios = 0;
-        }else{
+        } else {
             cantidadUsuarios = storageInfo.length
         }
 
 
         for (let i = 0; i < cantidadUsuarios; i++) {//En caso de que haya algo de info en el storage, lo cargo en el array usuarios
-            let usuario = {nombre:storageInfo[i].nombre, apellido1:storageInfo[i].apellido1, apellido2:storageInfo[i].apellido2, nick:storageInfo[i].nick, pass:storageInfo[i].pass};
+            let usuario = {
+                nombre: storageInfo[i].nombre,
+                apellido1: storageInfo[i].apellido1,
+                apellido2: storageInfo[i].apellido2,
+                nick: storageInfo[i].nick,
+                pass: storageInfo[i].pass
+            };
             usuarios.push(usuario);
         }
 
 
-        if(usuarios.length == 0){//Si sigue siendo null significa que no existe ningún dato en el storage y por lo tanto añado al usuario admin por seguridad.
+        if (usuarios.length == 0) {//Si sigue siendo null significa que no existe ningún dato en el storage y por lo tanto añado al usuario admin por seguridad.
             console.log("Admin")
-            let usuario = {nombre:"admin", apellido1:"none", apellido2:"none", nick:"admin", pass:"admin"};
+            let usuario = {nombre: "admin", apellido1: "none", apellido2: "none", nick: "admin", pass: "admin"};
             usuarios.push(usuario);
         }
 
@@ -63,22 +69,27 @@ function iniciarBD(){//Work in progress
 
     //AVISOS
 
-    if(avisos.length == 0){
+    if (avisos.length == 0) {
 
         storageInfo = JSON.parse(localStorage.getItem("datosAvisos"));
 
         let cantidadAvisos = 0;
         let storage;
 
-        if(storageInfo == null){//Si storageInfo está a NUll significa que la aplicación se ha abierto por primera vez.
+        if (storageInfo == null) {//Si storageInfo está a NUll significa que la aplicación se ha abierto por primera vez.
             cantidadAvisos = 0;
-        }else{
+        } else {
             cantidadAvisos = storageInfo.length
         }
 
 
         for (let i = 0; i < cantidadAvisos; i++) {//En caso de que haya algo de info en el storage, lo cargo en el array usuarios
-            let aviso = {titulo:storageInfo[i].titulo, descripcion:storageInfo[i].descripcion, prioridad:storageInfo[i].prioridad, fecha:storageInfo[i].fecha};
+            let aviso = {
+                titulo: storageInfo[i].titulo,
+                descripcion: storageInfo[i].descripcion,
+                prioridad: storageInfo[i].prioridad,
+                fecha: storageInfo[i].fecha
+            };
             avisos.push(aviso);
         }
 
@@ -89,20 +100,19 @@ function iniciarBD(){//Work in progress
     }
 
 
-
 }
 
 
 //FUNCIONES USUARIOS Atributos: nombre, apellido1, apellido2, nick, pass
 
-function iniciarSesion(){
+function iniciarSesion() {
 
     iniciarBD();
 
     for (let i = 0; i < usuarios.length; i++) {
         //Aquí añadiremos los campos a rellenar a la hora de la visualización de los elementos.
         console.log(usuarios[i].nick)
-        if(usuarios[i].nick == document.getElementById("txNick").value && usuarios[i].pass == document.getElementById("txPass").value){
+        if (usuarios[i].nick == document.getElementById("txNick").value && usuarios[i].pass == document.getElementById("txPass").value) {
             history.pushState('data to be passed', 'Title of the page', 'http://localhost:63342/Equipo04-Reto01/html/paginaprincipal/index.html');
 
             //EXTRA!!!!!
@@ -110,7 +120,13 @@ function iniciarSesion(){
             //A partir de aquí comienza la persistencia de datos. (Para poder saber quién ha iniciado sesión.)
 
             //Guardo los datos de usuario.
-            let usuario = {nombre:usuarios[i].nombre, apellido1:usuarios[i].apellido1, apellido2:usuarios[i].apellido2, nick:usuarios[i].nick, pass:usuarios[i].pass};
+            let usuario = {
+                nombre: usuarios[i].nombre,
+                apellido1: usuarios[i].apellido1,
+                apellido2: usuarios[i].apellido2,
+                nick: usuarios[i].nick,
+                pass: usuarios[i].pass
+            };
             //Y los meto en una nueva Key del localstorage
             localStorage.setItem('usuarioActual', JSON.stringify(usuario));
 
@@ -119,11 +135,9 @@ function iniciarSesion(){
     }
 
 
-
-
 }
 
-function crearUsuario(){
+function crearUsuario() {
     iniciarBD();
 
     let nombreLocal = document.getElementById("txNombre").value;
@@ -133,21 +147,27 @@ function crearUsuario(){
     let passLocal = document.getElementById("txPass2").value;
 
 
-    let usuario = {nombre:nombreLocal, apellido1:apellido1Local, apellido2:apellido2Local, nick:nickLocal, pass:passLocal};
+    let usuario = {
+        nombre: nombreLocal,
+        apellido1: apellido1Local,
+        apellido2: apellido2Local,
+        nick: nickLocal,
+        pass: passLocal
+    };
     usuarios.push(usuario);
 
     localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
 }
 
-function borrarUsuario(){
+function borrarUsuario() {
 
     iniciarBD();
 
     usuarioAEliminar = document.getElementById("txNick2").value;
 
     for (let i = 0; i < usuarios.length; i++) {
-        if(usuarios[i].nick == usuarioAEliminar){
+        if (usuarios[i].nick == usuarioAEliminar) {
             usuarios.splice(i, 1);
         }
     }
@@ -156,7 +176,7 @@ function borrarUsuario(){
 
 }
 
-function modificarUsuario(){
+function modificarUsuario() {
 
     usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
 
@@ -166,13 +186,13 @@ function modificarUsuario(){
         usuarios[posicion].nombre = document.getElementById("txNombre").value;
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
         location.reload();
-    }else{
+    } else {
         alert("Usuario no encontrado");
     }
 
 }
 
-function leerUsuarios(){
+function leerUsuarios() {
 
     //usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
 
@@ -183,12 +203,12 @@ function leerUsuarios(){
 
 }
 
-function rellenarCamposUsuario(){
+function rellenarCamposUsuario() {
 
     iniciarBD();
 
     for (let i = 0; i < usuarios.length; i++) {
-        if(usuarios[i].nick == document.getElementById("txNick2").value){
+        if (usuarios[i].nick == document.getElementById("txNick2").value) {
             document.getElementById("txNombre").value = usuarios[i].nombre;
             document.getElementById("txApellido1").value = usuarios[i].apellido1;
             document.getElementById("txApellido2").value = usuarios[i].apellido2;
@@ -200,55 +220,54 @@ function rellenarCamposUsuario(){
 
 //FUNCIONES AVISOS Atributos: titulo, descripcion, fecha, prioridad
 
-function crearAviso(){
+function crearAviso() {
     iniciarBD();
 
     let tituloLocal = document.getElementById("txTitulo2").value;
     let descripcionLocal = document.getElementById("txDescripcion2").value;
     let prioridadLocal = -1;
 
-    if(document.getElementById("rbBaja").checked) {
-    prioridadLocal = 0;
-    }  else if(document.getElementById("rbNormal").checked){
-    prioridadLocal = 1;
-    }else{
-    prioridadLocal = 2;
+    if (document.getElementById("rbBaja").checked) {
+        prioridadLocal = 0;
+    } else if (document.getElementById("rbNormal").checked) {
+        prioridadLocal = 1;
+    } else {
+        prioridadLocal = 2;
     }
 
     let fechaLocal = fechaActual();
 
 
-
-    let aviso = {titulo:tituloLocal, descripcion:descripcionLocal, prioridad:prioridadLocal, fecha:fechaLocal};
+    let aviso = {titulo: tituloLocal, descripcion: descripcionLocal, prioridad: prioridadLocal, fecha: fechaLocal};
     avisos.push(aviso);
 
     localStorage.setItem('datosAvisos', JSON.stringify(avisos));
 }
 
-function borrarAviso(){
-    /*iniciarBD();
+function borrarAviso() {
+    iniciarBD();
 
-    avisoABorrar = document.getElementById("txNick2").value;
+    avisoABorrar = document.getElementById("txTitulo2").value;
 
-    for (let i = 0; i < usuarios.length; i++) {
-        if(usuarios[i].nick == usuarioAEliminar){
-            usuarios.splice(i, 1);
+    console.log(avisoABorrar)
+
+    for (let i = 0; i < avisos.length; i++) {
+        if (avisos[i].titulo == avisoABorrar) {
+            avisos.splice(i, 1);
         }
     }
 
-    localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
-
-     */
+    localStorage.setItem('datosAvisos', JSON.stringify(avisos));
 }
 
-function leerAvisos(){
+function leerAvisos() {
     iniciarBD()
 
 
     textoAvisos = "";
 
+    //Creo un nuevo array para poder ordenar los avisos en base a su prioridad y no modificar el orden del array principal.
     avisosOrdenados = avisos;
-
     avisosOrdenados.sort((a, b) => a.prioridad - b.prioridad);
 
     for (let i = 0; i < avisosOrdenados.length; i++) {
@@ -259,13 +278,17 @@ function leerAvisos(){
     document.getElementById("taAvisos").value = textoAvisos;
 }
 
+function modificarAviso(){
+    
+}
+
 //EXTRAS
 
-function fechaActual(){
+function fechaActual() {
 
     var fecha = new Date();
     var fecha = fecha.getDate() + "/"
-        + (fecha.getMonth()+1)  + "/"
+        + (fecha.getMonth() + 1) + "/"
         + fecha.getFullYear() + " @ "
         + fecha.getHours() + ":"
         + fecha.getMinutes() + ":"
