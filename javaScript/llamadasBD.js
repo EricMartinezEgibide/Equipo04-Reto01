@@ -34,7 +34,7 @@ function iniciarBD(){//Work in progress
         let cantidadUsuarios = 0;
         let storage;
 
-        if(storageInfo == null){
+        if(storageInfo == null){//Si storageInfor está a NUll significa que la aplicación se ha abierto por primera vez.
             cantidadUsuarios = 0;
         }else{
             cantidadUsuarios = storageInfo.length
@@ -43,21 +43,20 @@ function iniciarBD(){//Work in progress
 
 
 
-        for (let i = 0; i < cantidadUsuarios; i++) {
-
-            console.log("Guardando a: " + storageInfo[i].nombre)
-
+        for (let i = 0; i < cantidadUsuarios; i++) {//En caso de que haya algo de info en el storage, lo cargo en el array usuarios
             let usuario = {nombre:storageInfo[i].nombre, apellido1:storageInfo[i].apellido1, apellido2:storageInfo[i].apellido2, nick:storageInfo[i].nick, pass:storageInfo[i].pass};
             usuarios.push(usuario);
         }
 
 
-        if(usuarios.length == 0){//Si sigue siendo null significa que no existe ningún dato.
+        if(usuarios.length == 0){//Si sigue siendo null significa que no existe ningún dato en el storage y por lo tanto añado al usuario admin por seguridad.
             console.log("Admin")
             let usuario = {nombre:"admin", apellido1:"none", apellido2:"none", nick:"admin", pass:"admin"};
             usuarios.push(usuario);
         }
 
+
+        //Tras extraer los datos locales actualizo la información.
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
     }
@@ -73,14 +72,25 @@ function iniciarBD(){//Work in progress
 
 function iniciarSesion(){
 
+    iniciarBD();
+
+    for (let i = 0; i < usuarios.length; i++) {
+        //Aquí añadiremos los campos a rellenar a la hora de la visualización de los elementos.
+        console.log(usuarios[i].nick)
+        if(usuarios[i].nick == document.getElementById("txNick").value && usuarios[i].pass == document.getElementById("txPass").value){
+            history.pushState('data to be passed', 'Title of the page', 'http://localhost:63342/Equipo04-Reto01/html/paginaprincipal/index.html');
+
+        }
+    }
+
 }
 
 function crearUsuario(){
     let nombreLocal = document.getElementById("txNombre").value;
     let apellido1Local = document.getElementById("txApellido1").value;
     let apellido2Local = document.getElementById("txApellido2").value;
-    let nickLocal = document.getElementById("txNick").value;
-    let passLocal = document.getElementById("txPass").value;
+    let nickLocal = document.getElementById("txNick2").value;
+    let passLocal = document.getElementById("txPass2").value;
 
 
     let usuario = {nombre:nombreLocal, apellido1:apellido1Local, apellido2:apellido2Local, nick:nickLocal, pass:passLocal};
@@ -127,7 +137,7 @@ function modificarUsuario(){
 
 function leerUsuario(){
 
-    usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
+    //usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
 
     for (let i = 0; i < usuarios.length; i++) {
         //Aquí añadiremos los campos a rellenar a la hora de la visualización de los elementos.

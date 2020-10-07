@@ -11,18 +11,18 @@
 		<h1>Aeronautics Engines S.A</h1>
 	</header>
 	<main>
-		<form action="paginaprincipal/index.html" method="get" class="login-box">
+		<form method="get" class="login-box">
 			<h1>Login</h1>
 			<div class="textbox">
 
 				<i class="usericon"><img src="../img/user-solid.svg"></i>
-				<input type="text" placeholder="Usuario" name="user">
+				<input type="text" placeholder="Usuario" id="txNick">
 			</div>
 			<div class="textbox">
 				<i class="passicon"><img src="../img/key-solid.svg"></i>
-				<input type="password" placeholder="Contraseña" name="pass">
+				<input type="password" placeholder="Contraseña" id="txPass">
 			</div>
-			<input class="btn" type="submit" name="" value="Enviar" onclick="acceder()">
+			<input class="btn" type="submit" name="" value="Enviar" onclick="iniciarSesion()">
 		</form>
 	</main>
 	<script src="../javaScript/llamadasBD.js"></script>
