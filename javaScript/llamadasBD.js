@@ -6,17 +6,23 @@ var avisos = [];
 
 function reiniciarBD(){//Work in progress
 
-/*
-    fetch("http://localhost:63342/Equipo04-Reto01/datosBD/usuarios.php",
-        {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(),
-        })
+//window.location.reload();
 
- */
+    let usuario;
+
+    usuario = {nombre:"admin", apellido1:"none", apellido2:"none", nick:"admin", pass:"admin"};
+    usuarios.push(usuario);
+
+    usuario = {nombre:"Juan", apellido1:"Gonzalez", apellido2:"Ruiz", nick:"Juan33", pass:"123"};
+    usuarios.push(usuario);
+
+    usuario = {nombre:"Pedro", apellido1:"Rodriguez", apellido2:"Sanz", nick:"PedroRS", pass:"123"};
+    usuarios.push(usuario);
+
+    usuario = {nombre:"Antonio", apellido1:"Mejía", apellido2:"Pastor", nick:"AntonioMej", pass:"123"};
+    usuarios.push(usuario);
+
+    localStorage.setItem('datosUsuario', JSON.stringify(usuarios));
 
 
 }
@@ -27,11 +33,11 @@ function reiniciarBD(){//Work in progress
 //FUNCIONES USUARIOS Atributos: nombre, apellido1, apellido2, nick, pass
 
 function crearUsuario(){
-    nombreLocal = document.getElementById("txNombre").value;
-    apellido1Local = document.getElementById("txApellido1").value;
-    apellido2Local = document.getElementById("txApellido2").value;
-    nickLocal = document.getElementById("txNick").value;
-    passLocal = document.getElementById("txPass").value;
+    let nombreLocal = document.getElementById("txNombre").value;
+    let apellido1Local = document.getElementById("txApellido1").value;
+    let apellido2Local = document.getElementById("txApellido2").value;
+    let nickLocal = document.getElementById("txNick").value;
+    let passLocal = document.getElementById("txPass").value;
 
 
     let usuario = {nombre:nombreLocal, apellido1:apellido1Local, apellido2:apellido2Local, nick:nickLocal, pass:passLocal};
@@ -39,20 +45,6 @@ function crearUsuario(){
 
     localStorage.setItem('datosUsuario', JSON.stringify(usuarios));
 
-    //CON FICHERO
-
-    /*
-    fetch("http://localhost:63342/Equipo04-Reto01/datosBD/usuarios.php", {
-
-        method: 'POST',
-        body: JSON.stringify(usuarios),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).catch(error => console.log('Error:', error));
-
-    console.log("BB")
-*/
 }
 
 function borrarUsuario(){
@@ -63,12 +55,21 @@ function buscarUsuario(){
 
 }
 
-function leerUsuarios(){
 
-    for (var i = 0; i < localStorage.length; i++){
-        console.log(localStorage.getItem(i))
+function leerUsuario(){
+
+    usuarios = JSON.parse(localStorage.getItem("datosUsuario"));
+
+    for (let i = 0; i < usuarios.length; i++) {
+        //Aquí añadiremos los campos a rellenar a la hora de la visualización de los elementos.
+        console.log(usuarios[i].nick)
     }
+
+    //document.getElementById("todosLocal").value = "";
+    //usuarios.forEach(u => document.getElementById("todosLocal").value += u.nombre + " " + u.apellido1 + "\n");
+
 }
+
 
 
 //FUNCIONES AVISOS Atributos: titulo, descripcion, fecha, prioridad
