@@ -87,7 +87,7 @@ header h1{
 	}
 }
 /*Ordenador*/
-@media only screen and (min-width: 901px){
+@media (min-width: 901px){
 	body{
 		background-image: url(../img/newyork.jpg);
 	}
@@ -96,5 +96,8 @@ header h1{
 	}
 	.btn:hover{
 		background-color: #FF8110;
+	}
+	.textbox input{
+		color: white;
 	}
 }
