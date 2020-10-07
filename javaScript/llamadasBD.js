@@ -154,8 +154,8 @@ function crearUsuario() {
         nick: nickLocal,
         pass: passLocal
     };
-    usuarios.push(usuario);
 
+    usuarios.push(usuario);
     localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
 }
@@ -178,17 +178,44 @@ function borrarUsuario() {
 
 function modificarUsuario() {
 
-    usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
+    iniciarBD()
 
-    let posicion = usuarios.findIndex(p => p.nick == document.getElementById("txNick").value);
+    let nick;
+    let nombre;
+    let apellido1;
+    let apellido2;
+    let pass;
 
-    if (posicion != -1) {
-        usuarios[posicion].nombre = document.getElementById("txNombre").value;
-        localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
-        location.reload();
-    } else {
-        alert("Usuario no encontrado");
+    //Busco el objeto en localstorage y guardo los datos nuevos en variables.
+    for (let i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].nick == document.getElementById("txNick2").value) {
+
+            nick = usuarios[i].nick;
+            nombre = document.getElementById("txNombre").value
+            apellido1 = document.getElementById("txApellido1").value
+            apellido2 = document.getElementById("txApellido2").value
+            pass = document.getElementById("txPass2").value
+
+            //Borro el registro viejo para poderlo sustituir.
+            usuarios.splice(i, 1);
+        }
     }
+
+    //Creo un nuevo usuario con los datos introducidos por el usuario.
+    let usuario = {
+        nombre: nombre,
+        apellido1: apellido1,
+        apellido2: apellido2,
+        nick: nick,
+        pass: pass
+    };
+
+    //Por último añado al nuevo usuario a localstorage (Siempre y cuando existiese.)
+    if (usuario.nombre != null) {
+        usuarios.push(usuario);
+        localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+    }
+
 
 }
 
@@ -278,8 +305,8 @@ function leerAvisos() {
     document.getElementById("taAvisos").value = textoAvisos;
 }
 
-function modificarAviso(){
-    
+function modificarAviso() {
+
 }
 
 //EXTRAS
