@@ -1,31 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 *{
-	box-sizing: border-box;
 	margin: 0 auto;
 }
 h1{
 	font-family: 'Poppins', sans-serif;
 }
 body{
-	background-image: url(../../img/edificio2.jpg);
-	background-size: 100%;
 	font-family: 'Montserrat', sans-serif;
-
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+header{
+	display: flex;
+  	width: 100vw;
 }
 main{
-	display: flex;
+	color: black;
+	width: 100vw;
+	height: 100vh;
 }
 nav ul {
   	display: none;
   	padding: 0;
   	margin: 0;
-  	width: 100%;
+  	width: 100vw;
 }
 
-nav img {
-  	width: 10%;
-  	padding: 14px 20px;
+.logopagina{
+  	height: 100px;
+  	margin-right: 42%;
+  	padding: 0 20px;
+  	width: 150px;
 }
 nav ul li a{
 	color: white;
@@ -33,52 +40,77 @@ nav ul li a{
 }
 
 nav ul li {
-	background-color: black;
-	width: 100%;
-	padding: 5%;
+	background-color: #FF8110;
+	width: 100vw;
+	padding: 4% 0;
 	margin: 0;
 	font-size: 2em;
 }
 
-.close{
-	display: none;
-}
 ul.menu{
 	display: flex;
 	flex-direction: column;
 	justify-content: center; 
 	height: 0;
-	overflow: hidden;
+	display: none;
 	transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
 }
-#navigation:target ul.menu{
-	height: 200px;
-	transition: height 0.4s ease-in-out 0s, background-color 2s ease 0s;
-}
-#navigation:target .logopagina{
-	display: none;
-}
-#navigation:target{
-	width: 100%;
-	height: 250px;
-}
 #navigation{
+	background-color: #FF8110;
+	display: flex;
+	height: 100px;
 	transition: 0s;
-	background-color: black;
-	width: 100%; 
+	width: 100vw; 
 }
-#navigation:target .open{
-	display: none;
-}
-#navigation:target .close{
-	display: block;
-}
+
 .menu{
 	flex-direction: column;
 	position: absolute;
 	width: 100%;
 	list-style-type: none;
+	margin-top: 100px;
 }
-i{
-	width: 28px;
+#check{
+	display: none;
+}
+.checkbtn{
+	font-size: 5em;
+}
+.close{
+	display: none;
+}
+#check:checked~.menu{
+	visibility: visible;
+	display: block;
+}
+#check:checked~.open{
+	display: none;
+}
+#check:checked~.close{
+	display: block;
+}
+section{
+	display: flex;
+	flex-direction: column;
+	margin: 10%;
+	width: 80%;
+	box-shadow: 0px 0px 6px 1px #00000059;
+}
+h3{
+	font-size: 20px;
+}
+.tablamenu{
+	display: flex;
+	list-style: none;
+	margin: 0;
+	margin-top: 2%;
+	padding-left: 0;
+}
+footer{
+	background-color: black;
+	color: white;
+	width: 100vw;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
 }
