@@ -24,6 +24,8 @@ function iniciarBD(){//Work in progress
 
      */
 
+    //USUARIOS
+
     //Al iniciar cargo los datos de del storage en el array de usuarios (De ésta manera evitamos que sean eliminados)
 
     //Si no hay nada en el array usuarios cargo los elementos del storage.
@@ -34,13 +36,11 @@ function iniciarBD(){//Work in progress
         let cantidadUsuarios = 0;
         let storage;
 
-        if(storageInfo == null){//Si storageInfor está a NUll significa que la aplicación se ha abierto por primera vez.
+        if(storageInfo == null){//Si storageInfo está a NUll significa que la aplicación se ha abierto por primera vez.
             cantidadUsuarios = 0;
         }else{
             cantidadUsuarios = storageInfo.length
         }
-
-
 
 
         for (let i = 0; i < cantidadUsuarios; i++) {//En caso de que haya algo de info en el storage, lo cargo en el array usuarios
@@ -61,11 +61,36 @@ function iniciarBD(){//Work in progress
 
     }
 
+    //AVISOS
+
+    if(avisos.length == 0){
+
+        storageInfo = JSON.parse(localStorage.getItem("datosAvisos"));
+
+        let cantidadAvisos = 0;
+        let storage;
+
+        if(storageInfo == null){//Si storageInfo está a NUll significa que la aplicación se ha abierto por primera vez.
+            cantidadAvisos = 0;
+        }else{
+            cantidadAvisos = storageInfo.length
+        }
+
+
+        for (let i = 0; i < cantidadAvisos; i++) {//En caso de que haya algo de info en el storage, lo cargo en el array usuarios
+            let aviso = {titulo:storageInfo[i].titulo, descripcion:storageInfo[i].descripcion, prioridad:storageInfo[i].prioridad, fecha:storageInfo[i].fecha};
+            avisos.push(aviso);
+        }
+
+
+        //Tras extraer los datos locales actualizo la información.
+        localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+
+    }
+
 
 
 }
-
-
 
 
 //FUNCIONES USUARIOS Atributos: nombre, apellido1, apellido2, nick, pass
@@ -176,7 +201,28 @@ function rellenarCamposUsuario(){
 //FUNCIONES AVISOS Atributos: titulo, descripcion, fecha, prioridad
 
 function crearAviso(){
+    iniciarBD();
 
+    let tituloLocal = document.getElementById("txTitulo2").value;
+    let descripcionLocal = document.getElementById("txDescripcion2").value;
+    let prioridadLocal = -1;
+
+    if(document.getElementById("rbBaja").checked) {
+    prioridadLocal = 0;
+    }  else if(document.getElementById("rbNormal").checked){
+    prioridadLocal = 1;
+    }else{
+    prioridadLocal = 2;
+    }
+
+    let fechaLocal = fechaActual();
+
+
+
+    let aviso = {titulo:tituloLocal, descripcion:descripcionLocal, prioridad:prioridadLocal, fecha:fechaLocal};
+    avisos.push(aviso);
+
+    localStorage.setItem('datosAvisos', JSON.stringify(avisos));
 }
 
 function actualizarAvisos(){
@@ -193,4 +239,17 @@ function buscarAviso(){
 
 function leerUsuarios(){
 
+}
+
+//EXTRAS
+
+function fechaActual(){
+    var fecha = new Date();
+    var dd = String(fecha.getDate()).padStart(2, '0');
+    var mm = String(fecha.getMonth() + 1).padStart(2, '0'); //Enero es 0!
+    var yyyy = fecha.getFullYear();
+
+    fecha = dd + '/' + mm + '/' + yyyy;
+
+    return fecha;
 }

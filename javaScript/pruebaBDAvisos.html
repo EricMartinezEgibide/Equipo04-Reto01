@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<script src="llamadasBD.js"></script>
+
+Titulo* (PK): <input type="text" id="txTitulo2">
+<br>
+<br>
+Descripcion: <input type="text" id="txDescripcion2">
+<br>
+<br>
+<p>Prioridad del aviso:</p>
+<input type="radio" id="rbBaja" name="gender" value="male">
+<label for="rbBaja">Baja</label><br>
+<input type="radio" id="rbNormal" name="gender" value="female">
+<label for="rbNormal">Normal</label><br>
+<input type="radio" id="rbAlta" name="gender" value="female">
+<label for="rbAlta">Alta</label><br>
+<br>
+<br>
+<br>
+
+<button id="bReiniciar" onclick = "iniciarBD()">INICIAR BASE DE DATOS</button>
+<button id="bGuardar" onclick = "crearAviso()">Guardar datos</button>
+<button id="bLeerUsuarios" onclick = "leerUsuarios()">Visualizar usuarios</button>
+<button id="bBorrarUsuario" onclick = "borrarUsuario()">Borrar usuario</button>
+<button id="bModificarUsuario" onclick = "modificarUsuario()">Modificar usuario</button>
+<br><br>
+<button id="bRellenarDatos" onclick = "rellenarCamposUsuario()">Auto rellenar</button>
+
+</body>
+
+</html>
