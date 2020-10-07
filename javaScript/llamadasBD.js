@@ -80,8 +80,21 @@ function iniciarSesion(){
         if(usuarios[i].nick == document.getElementById("txNick").value && usuarios[i].pass == document.getElementById("txPass").value){
             history.pushState('data to be passed', 'Title of the page', 'http://localhost:63342/Equipo04-Reto01/html/paginaprincipal/index.html');
 
+            //EXTRA!!!!!
+
+            //A partir de aquí comienza la persistencia de datos. (Para poder saber quién ha iniciado sesión.)
+
+            //Guardo los datos de usuario.
+            let usuario = {nombre:usuarios[i].nombre, apellido1:usuarios[i].apellido1, apellido2:usuarios[i].apellido2, nick:usuarios[i].nick, pass:usuarios[i].pass};
+            //Y los meto en una nueva Key del localstorage
+            localStorage.setItem('usuarioActual', JSON.stringify(usuario));
+
+
         }
     }
+
+
+
 
 }
 
