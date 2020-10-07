@@ -6,7 +6,7 @@ var avisos = [];
 
 function reiniciarBD(){//Work in progress
 
-//window.location.reload();
+    //localStorage.clear();
 
     let usuario;
 
@@ -48,6 +48,26 @@ function crearUsuario(){
 }
 
 function borrarUsuario(){
+
+    usuarioAEliminar = "Juan33";
+    let id = "";
+
+    usuarios = JSON.parse(localStorage.getItem("datosUsuario"));
+
+    for (let i = 0; i < usuarios.length; i++) {
+        if(usuarios[i].nick == usuarioAEliminar){
+            id = i;
+        }
+    }
+
+    console.log("ID: " + id)
+
+
+    usuarios.splice(id, 1);
+    localStorage.setItem('datosUsuario', JSON.stringify(usuarios));
+
+
+
 
 }
 
