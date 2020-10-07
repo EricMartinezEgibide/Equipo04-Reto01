@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="../css/usuarios.css">
+</head>
+<body>
+    <form>
+        <div id="botones">
+                <input type="button"  value="Insertar" onclick="insertar()"/>
+                <input type="button"  value="Modificar" onclick="modificar()"/>
+                <input type="button"  value="Borrar" onclick="eliminar()"/>
+        </div>
+
+        <div id="ver_usuarios">
+            <table border="1" style="border-collapse: collapse">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Alias/Nick</th>
+                    <th>Contraseña</th>
+                    <th>Ajustes</th>
+                </tr>
+                <tr>
+                    <td>Urko</td>
+                    <td>Ruiz de Gordejuela</td>
+                    <td>Ochoa de Amezaga</td>
+                    <td>Kuzk</td>
+                    <td>12345</td>
+                    <td><input type="checkbox" name="seleccion[]" value=""/></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
+    <div id="insertar_usuarios">
+        <br/><br/>
+        <form>
+            <table border="1" style="border-collapse: collapse">
+                <tr>
+                    <th><label for="Nombre">Nombre</label></th>
+                    <th><label for="Primer Apellido">Primer Apellido</label></th>
+                    <th><label for="Segundo Apellido">Segundo Apellido</label></th>
+                    <th><label for="Alias/Nick">Alias/Nick</label></th>
+                    <th><label for="Contraseña">Contraseña</label></th>
+                    <th>Insertar</th>
+                </tr>
+                <tr>
+                    <td><input autocomplete="off" size="9" maxlength="9" type="text" id="Nombre" name="Nombre" required/></td>
+                    <td><input autocomplete="off"  size="20" type="text" id="Primer Apellido" name="Primer Apellido" required/></td>
+                    <td><input autocomplete="off"  size="20" type="text" id="Segundo Apellido" name="Segundo Apellido" required/></td>
+                    <td><input autocomplete="off"  size="9" maxlength="9" type="text" id="Alias/Nick" name="Alias/Nick" required/></td>
+                    <td><input autocomplete="off"  size="20" type="password" id="Contraseña" name="Contraseña" required/></td>
+                    <td><input type="button" value="Grabar" onclick="grabarUsuario()"/></td>
+                </tr>
+            </table></form>
+        <div>
+            <form>
+                <input type="button" value="Volver" onclick="verUsuarios()"/>
+            </form>
+        </div>
+    </div>
+    <div id="eliminar_usuarios">
+    <br/>
+    <h2>¿Desea borrar este usuario?</h2>
+    <form>
+            <br/><br/>
+
+                <table border="1" style="border-collapse: collapse">
+                    <tr>
+                        <th><label for="Nombre">Nombre</label></th>
+                        <th><label for="Primer Apellido">Primer Apellido</label></th>
+                        <th><label for="Segundo Apellido">Segundo Apellido</label></th>
+                        <th><label for="Alias/Nick">Alias/Nick</label></th>
+                        <th><label for="Contraseña">Contraseña</label></th>
+                    </tr>
+                    <tr>
+                        <td>Urko</td>
+                        <td>Ruiz de Gordejuela</td>
+                        <td>Ochoa de Amezaga</td>
+                        <td>Kuzk</td>
+                        <td>12345</td>
+                    </tr>
+                </table>
+                <input type="hidden" name="selec" value=""/>
+        <div>
+            <input type="button" value="Volver" onclick="verUsuarios()"/>
+            <input type="button" value="Eliminar" onclick="eliminarUsuario()"/>
+        </div>
+    </form>
+    </div>
+    <div id="modificar_usuarios">
+        <br/><br/>
+        <form>
+            <input type="hidden" name="seleccion" value=""/>
+            <table border="1" style="border-collapse: collapse">
+                <tr>
+                    <th><label for="Nombre">Nombre</label></th>
+                    <th><label for="Primer Apellido">Primer Apellido</label></th>
+                    <th><label for="Segundo Apellido">Segundo Apellido</label></th>
+                    <th><label for="Alias/Nick">Alias/Nick</label></th>
+                    <th><label for="Contraseña">Contraseña</label></th>
+                    <th>Modificar</th>
+                </tr>
+                <tr>
+                    <td><input autocomplete="off" size="9" maxlength="9" type="text" id="Nombre" name="Nombre" required/></td>
+                    <td><input autocomplete="off"  size="20" type="text" id="Primer Apellido" name="Primer Apellido" required/></td>
+                    <td><input autocomplete="off"  size="20" type="text" id="Segundo Apellido" name="Segundo Apellido" required/></td>
+                    <td><input autocomplete="off"  size="9" maxlength="9" type="text" id="Alias/Nick" name="Alias/Nick" required/></td>
+                    <td><input autocomplete="off"  size="20" type="password" id="Contraseña" name="Contraseña" required/></td>
+                    <td><input type="button" value="Guardar" onclick="modificarUsuario()"/></td>
+                </tr>
+            </table></form>
+        <div>
+            <form>
+                <input type="button" value="Volver" onclick="verUsuarios()"/>
+            </form>
+        </div>
+    </div>
+</body>
+    <script src="../javaScript/funciones_usuarios.js"></script>
+</html>
