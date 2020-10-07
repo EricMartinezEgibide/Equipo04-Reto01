@@ -86,6 +86,8 @@ function iniciarSesion(){
 }
 
 function crearUsuario(){
+    iniciarBD();
+
     let nombreLocal = document.getElementById("txNombre").value;
     let apellido1Local = document.getElementById("txApellido1").value;
     let apellido2Local = document.getElementById("txApellido2").value;
@@ -102,18 +104,16 @@ function crearUsuario(){
 
 function borrarUsuario(){
 
-    usuarioAEliminar = "Juan33";
-    let id = "";
+    iniciarBD();
 
-    usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
+    usuarioAEliminar = document.getElementById("txNick2").value;
 
     for (let i = 0; i < usuarios.length; i++) {
         if(usuarios[i].nick == usuarioAEliminar){
-            id = i;
+            usuarios.splice(i, 1);
         }
     }
 
-    usuarios.splice(id, 1);
     localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
 }
@@ -134,8 +134,7 @@ function modificarUsuario(){
 
 }
 
-
-function leerUsuario(){
+function leerUsuarios(){
 
     //usuarios = JSON.parse(localStorage.getItem("datosUsuarios"));
 
@@ -146,10 +145,20 @@ function leerUsuario(){
 
 }
 
+function rellenarCamposUsuario(){
 
+    iniciarBD();
 
+    for (let i = 0; i < usuarios.length; i++) {
+        if(usuarios[i].nick == document.getElementById("txNick2").value){
+            document.getElementById("txNombre").value = usuarios[i].nombre;
+            document.getElementById("txApellido1").value = usuarios[i].apellido1;
+            document.getElementById("txApellido2").value = usuarios[i].apellido2;
+            document.getElementById("txPass2").value = usuarios[i].pass;
+        }
+    }
 
-
+}
 
 //FUNCIONES AVISOS Atributos: titulo, descripcion, fecha, prioridad
 
