@@ -1,14 +1,12 @@
-var usuarios = [];
-var avisos = [];
+let usuarios = [];
+let avisos = [];
 
 
 //CONSULTAS PELIGROSAS
 
 function iniciarBD(){//Work in progress
 
-    //localStorage.clear();
-
-    let usuario;
+    /*let usuario;
 
     usuario = {nombre:"admin", apellido1:"none", apellido2:"none", nick:"admin", pass:"admin"};
     usuarios.push(usuario);
@@ -24,6 +22,47 @@ function iniciarBD(){//Work in progress
 
     localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
+     */
+
+    //Al iniciar cargo los datos de del storage en el array de usuarios (De ésta manera evitamos que sean eliminados)
+
+    //Si no hay nada en el array usuarios cargo los elementos del storage.
+    if(usuarios.length == 0){
+
+        storageInfo = JSON.parse(localStorage.getItem("datosUsuarios"));
+
+        let cantidadUsuarios = 0;
+        let storage;
+
+        if(storageInfo == null){
+            cantidadUsuarios = 0;
+        }else{
+            cantidadUsuarios = storageInfo.length
+        }
+
+
+
+
+        for (let i = 0; i < cantidadUsuarios; i++) {
+
+            console.log("Guardando a: " + storageInfo[i].nombre)
+
+            let usuario = {nombre:storageInfo[i].nombre, apellido1:storageInfo[i].apellido1, apellido2:storageInfo[i].apellido2, nick:storageInfo[i].nick, pass:storageInfo[i].pass};
+            usuarios.push(usuario);
+        }
+
+
+        if(usuarios.length == 0){//Si sigue siendo null significa que no existe ningún dato.
+            console.log("Admin")
+            let usuario = {nombre:"admin", apellido1:"none", apellido2:"none", nick:"admin", pass:"admin"};
+            usuarios.push(usuario);
+        }
+
+        localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+
+    }
+
+
 
 }
 
@@ -31,6 +70,10 @@ function iniciarBD(){//Work in progress
 
 
 //FUNCIONES USUARIOS Atributos: nombre, apellido1, apellido2, nick, pass
+
+function iniciarSesion(){
+
+}
 
 function crearUsuario(){
     let nombreLocal = document.getElementById("txNombre").value;
