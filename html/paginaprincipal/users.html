@@ -32,10 +32,58 @@
 	</header>
 	<main>
 		<section>
-			
+			<form action="#" method="post">
+				<section id="section_form">
+					<div>
+						<input type="text" name="name" id="name" placeholder="Nombre" required/>
+					</div>
+					<div>
+						<input type="text" name="surname1" id="surname1" placeholder="Primer apellido" required/>
+					</div>
+					<div>
+						<input type="text" name="surname2" id="surname2" placeholder="Segundo apellido" required/>
+					</div>
+					<div>
+						<input type="text" name="nickname" id="nickname" placeholder="Alias/Nombre usuario" required/>
+					</div>
+					<div>
+						<input type="text" name="pass" id="pass" placeholder="Contraseña" required/>
+					</div>
+					<div>
+						<input type="button" name="btnsubmit" id="btnsubmit" value="Enviar datos" class="principal" id="add_row" />
+					</div>
+					</section>
+						
+					<section id="section_table">
+						<table id="tableusers">
+							<thead>
+								<tr>
+									<th>Nombre</th>
+									<th>Primer apellido</th>
+									<th>Segundo apellido</th>
+									<th>Alias/Nombre de usuario</th>
+									<th>Contraseña</th>
+									<td>Acción</td>
+								</tr>
+							</thead>
+							<tbody id="content_table">
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>	
+				</section>
+			</form>
 		</section>
 	</main>
 	<footer>
 			<p>Designed by NUE</p>
 	</footer>
+	<script type="text/javascript"></script><!--Poner el link de js-->
 </body>
