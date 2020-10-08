@@ -214,6 +214,8 @@ function modificarUsuario() {
     if (usuario.nombre != null) {
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+    }{
+        alert("El usuario que está intentando modificar no existe.")
     }
 
 
@@ -307,7 +309,86 @@ function leerAvisos() {
 
 function modificarAviso() {
 
+    iniciarBD()
+
+    let titulo;
+    let descripcion;
+    let prioridad;
+    let fecha;
+
+    //Busco el objeto en localstorage y guardo los datos nuevos en variables.
+    for (let i = 0; i < avisos.length; i++) {
+        if (avisos[i].titulo == document.getElementById("txTitulo2").value) {
+
+            titulo = avisos[i].titulo;
+            descripcion = document.getElementById("txDescripcion2").value;
+
+            if (document.getElementById("rbBaja").checked) {
+                prioridad = 0;
+            } else if (document.getElementById("rbNormal").checked) {
+                prioridad = 1;
+            } else {
+                prioridad = 2;
+            }
+
+            fecha = avisos[i].fecha;
+
+            //Borro el registro viejo para poderlo sustituir.
+            avisos.splice(i, 1);
+        }
+    }
+
+    //Creo un nuevo aviso con los datos introducidos por el usuario.
+    let aviso = {
+        titulo: titulo,
+        descripcion: descripcion,
+        prioridad: prioridad,
+        fecha: fecha
+    };
+
+    //Por último añado al nuevo aviso a localstorage (Siempre y cuando existiese.)
+    if (aviso.titulo != null) {
+        avisos.push(aviso);
+        localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+    }else{
+        alert("El aviso que está intentando modificar no existe.")
+    }
+
 }
+
+function rellenarCamposAviso() {
+
+    iniciarBD();
+
+    //Primero busco el aviso en el local storage en base al título introducido por el usuario.
+    for (let i = 0; i < avisos.length; i++) {
+
+        if (avisos[i].titulo == document.getElementById("txTitulo2").value) {//Una vez localizado añado los datos en los campos.
+            document.getElementById("txTitulo2").value = avisos[i].titulo;
+            document.getElementById("txDescripcion2").value = avisos[i].descripcion;
+
+            //Lo único un poco peculiar aquí es éste switch que se encarga de marcar el Radio button correcto.
+            switch (avisos[i].prioridad){
+
+                case 0:
+                    document.getElementById("rbBaja").checked = true;
+                    break;
+
+                case 1:
+                    document.getElementById("rbNormal").checked = true;
+                    break;
+
+                case 2:
+                    document.getElementById("rbAlta").checked = true;
+                    break;
+
+            }
+
+        }
+    }
+
+}
+
 
 //EXTRAS
 
