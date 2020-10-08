@@ -15,6 +15,7 @@ body{
 header{
 	display: flex;
   	width: 100vw;
+  	box-shadow: 0 0 7px 1px #00000057;
 }
 main{
 	color: black;
@@ -41,7 +42,7 @@ nav ul li a{
 }
 
 nav ul li {
-	background-color: #FF8110;
+	background-color: #5C5C5C;
 	width: 100vw;
 	padding: 4% 0;
 	margin: 0;
@@ -57,7 +58,7 @@ ul.menu{
 	transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
 }
 #navigation{
-	background-color: #FF8110;
+	background-color: #5C5C5C;
 	display: flex;
 	height: 100px;
 	transition: 0s;
@@ -103,8 +104,53 @@ h3{
 footer{
 	background-color: black;
 	color: white;
+	display: flex;
 	width: 100vw;
     height: 100px;
     position: absolute;
     bottom: 0;
+}
+footer p{
+	align-self: center;
+}
+
+@media only screen and (min-width: 401px) and (max-width: 900px){
+		nav{
+		display: flex;
+	}
+	ul.menu{
+		display: flex;
+		flex-direction: row;
+		align-items: flex-end;
+		text-align: center;
+	}
+	#check, .checkbtn{
+		display: none;
+	}
+	nav ul li a {
+		padding: 10%;
+	}
+	nav ul li a:hover{
+		background-color: #f49f0a;
+	}
+}
+@media only screen and (min-width: 901px){
+	ul.menu{
+		display: flex;
+		height: 100px;
+		flex-direction: row;
+		align-self: center;
+	}
+	#check, .checkbtn{
+		display: none;
+	}
+	#navigation{
+		height: 200px;
+	}
+	nav ul li{
+		padding: 0;
+		display: flex;
+		width: 33%;
+		align-self: end;
+	}
 }
