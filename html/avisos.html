@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avisos</title>
+    <link rel="stylesheet" href="../css/avisos.css">
+</head>
+<body>
+    <div id="contenedor">
+        <form>
+            <div id="botones">
+                <input type="button"  value="Insertar" onclick="insertar()"/>
+                <input type="button"  value="Modificar" onclick="modificar()"/>
+                <input type="button"  value="Borrar" onclick="eliminar()"/>
+            </div>
+            <br/>
+            <div id="ver_avisos">
+                <table border="1" style="border-collapse: collapse">
+                    <tr>
+                        <th>Título</th>
+                        <th>Descripción</th>
+                        <th>Prioridad</th>
+                        <th>Ajustes</th>
+                    </tr>
+                    <tr>
+                        <td>Prueba</td>
+                        <td>Esto es una prueba</td>
+                        <td>Grave</td>
+                        <td><input type="checkbox" name="seleccion[]" value=""/></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+
+        <div id="insertar_avisos">
+            <br/>
+            <form>
+                <table border="1" style="border-collapse: collapse">
+                    <tr>
+                        <th><label for="Titulo">Título</label></th>
+                        <th><label for="Descripcion">Descripción</label></th>
+                        <th><label for="Prioridad">Prioridad</label></th>
+                    </tr>
+                    <tr>
+                        <td><input autocomplete="off" size="9" maxlength="9" type="text" id="Titulo" name="Titulo" required/></td>
+                        <td><input autocomplete="off"  size="50" type="text-area" id="Descripcion" name="Descripcion" required/></td>
+                        <td><select id="Prioridad" name="Prioridad">
+                            <option  value="0">Baja</option>
+                            <option  value="1">Media</option>
+                            <option  value="2">Alta</option>
+                        </select></td>
+                    </tr>
+                </table></form>
+            <br/>
+            <div>
+                <form>
+                    <input type="button" value="Volver" onclick="verAvisos()"/>
+                    <input type="button" value="Crear" onclick="crearAviso()"/>
+                </form>
+            </div>
+        </div>
+        <div id="eliminar_avisos">
+            <h2>¿Desea borrar este aviso?</h2>
+            <form>
+                <br/>
+                <table border="1" style="border-collapse: collapse">
+                    <tr>
+                        <th><label for="Titulo">Título</label></th>
+                        <th><label for="Descripcion">Descripción</label></th>
+                        <th><label for="Prioridad">Prioridad</label></th>
+                    </tr>
+                    <tr>
+                        <td>Prueba</td>
+                        <td>Esto es una prueba</td>
+                        <td>Grave</td>
+                    </tr>
+                </table>
+                <input type="hidden" name="selec" value=""/>
+                <br/>
+                <div>
+                    <input type="button" value="Volver" onclick="verAvisos()"/>
+                    <input type="button" value="Eliminar" onclick="eliminarAviso()"/>
+                </div>
+            </form>
+        </div>
+        <div id="modificar_avisos">
+            <br/>
+            <form>
+                <input type="hidden" name="seleccion" value=""/>
+                <table border="1" style="border-collapse: collapse">
+                    <tr>
+                        <th><label for="Titulo">Título</label></th>
+                        <th><label for="Descripcion">Descripción</label></th>
+                        <th><label for="Prioridad">Prioridad</label></th>
+                    </tr>
+                    <tr>
+                        <td><input autocomplete="off" size="9" maxlength="9" type="text" id="Titulo" name="Titulo" required/></td>
+                        <td><input autocomplete="off"  size="50" type="text-area" id="Descripcion" name="Descripcion" required/></td>
+                        <td><select id="Prioridad" name="Prioridad">
+                            <option  value="0">Baja</option>
+                            <option  value="1">Media</option>
+                            <option  value="2">Alta</option>
+                        </select></td>
+                    </tr>
+                </table></form>
+            <br/>
+            <div>
+                <form>
+                    <input type="button" value="Volver" onclick="verAvisos()"/>
+                    <input type="button" value="Guardar" onclick="modificarAviso()"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../javaScript/funciones_avisos.js"></script>
+</html>

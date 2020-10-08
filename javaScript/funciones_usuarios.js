@@ -20,15 +20,15 @@ function eliminar() {
 }
 
 function grabarUsuario() {
-    alert("Insertamos Usuario");
+    alert("¡Has creado el usuario!");
 }
 
 function eliminarUsuario() {
-    alert("Eliminamos el usuario");
+    alert("¡Has eliminado el usuario!");
 }
 
 function modificarUsuario() {
-    alert("Modificamos el usuario");
+    alert("¡Has modificado el usuario!");
 }
 
 function verUsuarios() {
