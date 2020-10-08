@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<script src="llamadasBD.js"></script>
+
+Nickname* (PK): <input type="text" id="txNick2">
+<br>
+<br>
+Nombre: <input type="text" id="txNombre">
+<br>
+<br>
+Primer apellido: <input type="text" id="txApellido1">
+<br>
+<br>
+Segundo apellido: <input type="text" id="txApellido2">
+<br>
+<br>
+Password: <input type="text" id="txPass2">
+<br>
+<br>
+<br>
+
+<button id="bReiniciar" onclick = "iniciarBD()">INICIAR BASE DE DATOS</button>
+<button id="bGuardar" onclick = "crearUsuario()">Guardar datos</button>
+<button id="bLeerUsuarios" onclick = "leerUsuarios()">Visualizar usuarios</button>
+<button id="bBorrarUsuario" onclick = "borrarUsuario()">Borrar usuario</button>
+<button id="bModificarUsuario" onclick = "modificarUsuario()">Modificar usuario</button>
+<br><br>
+<button id="bRellenarDatos" onclick = "rellenarCamposUsuario()">Auto rellenar</button>
+
+</body>
+
+</html>
