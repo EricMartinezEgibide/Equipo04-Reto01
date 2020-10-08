@@ -137,6 +137,34 @@ function iniciarSesion() {
 
 }
 
+function registrarUsuario(){
+    iniciarBD();
+
+    let nombreLocal = document.getElementById("txNombre").value;
+    let apellido1Local = document.getElementById("txApellido1").value;
+    let apellido2Local = document.getElementById("txApellido2").value;
+    let passLocal = document.getElementById("txPass2").value;
+
+    let nickLocal = nombreLocal.charAt(0) + apellido1Local.charAt(0) + fechaActualSimple();
+
+    if(nombreLocal == "" || apellido1Local == "" || apellido2Local == "" || passLocal == ""){
+        alert("Tiene que rellenar todos los campos.")
+    }else{
+        let usuario = {
+            nombre: nombreLocal,
+            apellido1: apellido1Local,
+            apellido2: apellido2Local,
+            nick: nickLocal,
+            pass: passLocal
+        };
+
+        usuarios.push(usuario);
+        localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+    }
+
+
+}
+
 function crearUsuario() {
     iniciarBD();
 
@@ -146,30 +174,39 @@ function crearUsuario() {
     let nickLocal = document.getElementById("txNick2").value;
     let passLocal = document.getElementById("txPass2").value;
 
+    if(nombreLocal == "" || apellido1Local == "" || apellido2Local == "" || passLocal == "" || nickLocal == ""){
+        alert("Tiene que rellenar todos los campos.")
+    }else{
+        let usuario = {
+            nombre: nombreLocal,
+            apellido1: apellido1Local,
+            apellido2: apellido2Local,
+            nick: nickLocal,
+            pass: passLocal
+        };
 
-    let usuario = {
-        nombre: nombreLocal,
-        apellido1: apellido1Local,
-        apellido2: apellido2Local,
-        nick: nickLocal,
-        pass: passLocal
-    };
-
-    usuarios.push(usuario);
-    localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        usuarios.push(usuario);
+        localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+    }
 
 }
 
 function borrarUsuario() {
 
     iniciarBD();
+    let encontrado = false;
 
     usuarioAEliminar = document.getElementById("txNick2").value;
 
     for (let i = 0; i < usuarios.length; i++) {
         if (usuarios[i].nick == usuarioAEliminar) {
             usuarios.splice(i, 1);
+            encontrado = true;
         }
+    }
+
+    if(encontrado == false){
+        alert("El usuario que desea eliminar no existe.")
     }
 
     localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
@@ -235,6 +272,7 @@ function leerUsuarios() {
 function rellenarCamposUsuario() {
 
     iniciarBD();
+    encontrado = false;
 
     for (let i = 0; i < usuarios.length; i++) {
         if (usuarios[i].nick == document.getElementById("txNick2").value) {
@@ -242,7 +280,13 @@ function rellenarCamposUsuario() {
             document.getElementById("txApellido1").value = usuarios[i].apellido1;
             document.getElementById("txApellido2").value = usuarios[i].apellido2;
             document.getElementById("txPass2").value = usuarios[i].pass;
+
+            encontrado = true;
         }
+    }
+
+    if(encontrado == false){
+        alert("El usuario que intenta buscar no existe.")
     }
 
 }
@@ -260,21 +304,28 @@ function crearAviso() {
         prioridadLocal = 0;
     } else if (document.getElementById("rbNormal").checked) {
         prioridadLocal = 1;
-    } else {
+    } else if (document.getElementById("rbAlta").checked){
         prioridadLocal = 2;
     }
 
-    let fechaLocal = fechaActual();
+    if(tituloLocal == "" || descripcionLocal == "" || prioridadLocal == -1){
+        alert("Tiene que rellenar todos los campos.")
+    }else{
+        let fechaLocal = fechaActualCompleja();
 
 
-    let aviso = {titulo: tituloLocal, descripcion: descripcionLocal, prioridad: prioridadLocal, fecha: fechaLocal};
-    avisos.push(aviso);
+        let aviso = {titulo: tituloLocal, descripcion: descripcionLocal, prioridad: prioridadLocal, fecha: fechaLocal};
+        avisos.push(aviso);
 
-    localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+        localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+    }
+
+
 }
 
 function borrarAviso() {
     iniciarBD();
+    let encontrado = false;
 
     avisoABorrar = document.getElementById("txTitulo2").value;
 
@@ -283,7 +334,12 @@ function borrarAviso() {
     for (let i = 0; i < avisos.length; i++) {
         if (avisos[i].titulo == avisoABorrar) {
             avisos.splice(i, 1);
+            encontrado = true;
         }
+    }
+
+    if(encontrado == false){
+        alert("El aviso que intenta eliminar no existe.")
     }
 
     localStorage.setItem('datosAvisos', JSON.stringify(avisos));
@@ -359,6 +415,7 @@ function modificarAviso() {
 function rellenarCamposAviso() {
 
     iniciarBD();
+    encontrado = false;
 
     //Primero busco el aviso en el local storage en base al título introducido por el usuario.
     for (let i = 0; i < avisos.length; i++) {
@@ -384,7 +441,14 @@ function rellenarCamposAviso() {
 
             }
 
+            encontrado = true;
+
         }
+    }
+
+
+    if(encontrado == false){
+        alert("El aviso que intenta buscar no existe.")
     }
 
 }
@@ -392,7 +456,7 @@ function rellenarCamposAviso() {
 
 //EXTRAS
 
-function fechaActual() {
+function fechaActualCompleja() {
 
     var fecha = new Date();
     var fecha = fecha.getDate() + "/"
@@ -401,6 +465,15 @@ function fechaActual() {
         + fecha.getHours() + ":"
         + fecha.getMinutes() + ":"
         + fecha.getSeconds();
+
+    return fecha;
+}
+
+function fechaActualSimple(){
+    var fecha = new Date();
+    var fecha = fecha.getDate() + ""
+        + (fecha.getMonth() + 1) + ""
+        + fecha.getFullYear() + "";
 
     return fecha;
 }
