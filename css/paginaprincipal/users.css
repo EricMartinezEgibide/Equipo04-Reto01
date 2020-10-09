@@ -1,16 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
 *{
 	margin: 0 auto;
 }
 h1{
 	font-family: 'Poppins', sans-serif;
 }
+h4{
+	margin: 5%;
+	text-align: center;
+	width: 100%;
+}
 body{
 	font-family: 'Montserrat', sans-serif;
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+}
+input{
+	font-family: 'Montserrat', sans-serif;
+
 }
 header{
 	display: flex;
@@ -101,18 +113,51 @@ section{
 	flex-direction: row;
 	flex-wrap: wrap;
 }
+#section_form div{
+	overflow: hidden;
+	font-size: 40px;
+	padding: 2%;
+	width: 100%;
+	margin: 8px;
+	border-bottom: 1px solid lightgrey;
+}
+
+#section_form div input{
+	border: none;
+	outline: none;
+	background: none;
+	color: black;
+	font-size: 10px;
+	float: left;
+	margin: 0 10px;
+	line-height: 1.65em;
+}
+input [type="text"], input[type="password"]{
+	background: rgba(144, 144, 144, 0.25);
+	border-radius: 3px;
+    border: none;
+    color: inherit;
+    display: block;
+    outline: 0;
+    padding: 0 1em;
+    text-decoration: none;
+    width: 100%;
+    font-size: 11pt;
+    letter-spacing: 0.0375em;
+}
+input [type="button"]{
+	background-color: #16273d;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    width: 100%;
+}
 #section_table{
 	display: flex;
 	flex-wrap: wrap;
 }
-input{
-	width: 80%;
-}
-#btnsubmit{
-	width: 100%;
-}
 th, td{
 	font-size: 10px;
+	font-weight: bold;
 }
 h3{
 	font-size: 20px;

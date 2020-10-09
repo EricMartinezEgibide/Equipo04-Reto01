@@ -34,6 +34,7 @@
 		<section>
 			<form action="#" method="post">
 				<section id="section_form">
+					<h4>DATOS INICIALES</h4>
 					<div>
 						<input type="text" name="name" id="name" placeholder="Nombre" required/>
 					</div>
@@ -47,14 +48,12 @@
 						<input type="text" name="nickname" id="nickname" placeholder="Alias/Nombre usuario" required/>
 					</div>
 					<div>
-						<input type="text" name="pass" id="pass" placeholder="Contraseña" required/>
+						<input type="password" name="pass" id="pass" placeholder="Contraseña" required/>
 					</div>
-					<div>
-						<input type="button" name="btnsubmit" id="btnsubmit" value="Enviar datos" class="principal" id="add_row" />
-					</div>
-					</section>
+						<input type="button" name="btnsubmit" value="Enviar datos" class="principal" id="add_row" />
+				</section>
 						
-					<section id="section_table">
+				<section id="section_table">
 						<table id="tableusers">
 							<thead>
 								<tr>
@@ -85,5 +84,6 @@
 	<footer>
 			<p>Designed by NUE</p>
 	</footer>
-	<script type="text/javascript"></script><!--Poner el link de js-->
+	<script src="../../javaScript/dynamictable.js"></script><!--Poner el link de js-->
+	<script src="../../javaScript/jquery.min.js"></script>
 </body>
