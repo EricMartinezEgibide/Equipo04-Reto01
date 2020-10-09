@@ -1,7 +1,29 @@
 function funcMain(){
-    document.getElementById("add_row").addEventListener("click", newRowTable);
-    document.getElementsByTagName("loans_table").addEventListener("click", '.fa-edit',deleteUser());
-    document.getElementsByTagName('loans_table').addEventListener("click", '.fa-trash',editUser())
+    document.getElementById("add_row").addEventListener('click', newRowTable);
+    document.getElementsByTagName("loans_table").addEventListener('click', ".fa-edit",deleteUser());
+    document.getElementsByTagName('loans_table').addEventListener('click', ".fa-trash",editUser());
+    document.getElementsByTagName("body").addEventListener('click', ".fa-edit", deleteUser());
+    document.getElementsByTagName("body").addEventListener('click', "fa-trash", editUser());
+}
+/*function funcDeleteUser(){
+    //Obtener la fila que se esta eliminando
+    var a = this.parentNode.parentNode;
+    this.parent.parent.removeEventListener(this);
+    console.log(a);
+}*/
+function deleteUser(){
+    //Guardar la referencia del objeto presionado
+    var _this = this;
+    //Obtener las filas de los datos de la fila que se va a eliminar
+    var array_fila = getRowSelected(_this);
+    //this.parentElement.parentElement.fadeOut();
+    this.parent.parent.removeEventListener(this);
+}
+function editUser(){
+    var _this = this;
+    var array_fila = getRowSelected(_this);
+    console.log(array_fila[0] + " - " + array_fila[1] + " - " + array_fila[2] + " - " + array_fila[3] + " - " + array_fila[4]);
+    //Codigo de editar una fila lo pueden agregar aqui
 }
 function getRowSelected(objectPressed){
     //Coger la linea que se esta eliminando
@@ -14,19 +36,6 @@ function getRowSelected(objectPressed){
 
     var array_fila = [name, sn1, sn2, nick, pass];
     return array_fila;
-}
-function deleteUser(){
-    //Guardar la referencia del objeto presionado
-    var _this = this;
-    //Obtener las filas de los datos de la fila que se va a eliminar
-    var array_fila = getRowSelected(_this);
-
-}
-function editUser(){
-    var _this = this;
-    var array_fila = getRowSelected(_this);
-    console.log(array_fila[0] + " - " + array_fila[1] + " - " + array_fila[2] + " - " + array_fila[3] + " - " + array_fila[4]);
-    //Codigo de editar una fila lo pueden agregar aqui
 }
 function newRowTable(){
     //Columnas
