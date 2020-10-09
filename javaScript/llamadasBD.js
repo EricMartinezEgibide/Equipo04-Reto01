@@ -298,10 +298,10 @@ function rellenarCamposUsuario(idBoton) {
 
 
             //Símplemente relleno los datos del formulario con los que hay en el objeto que coincida con el nick.
+            document.getElementById("nickname").value = usuarios[id].nick;
             document.getElementById("name").value = usuarios[id].nombre;
             document.getElementById("surname1").value = usuarios[id].apellido1;
             document.getElementById("surname2").value = usuarios[id].apellido2;
-            document.getElementById("nickname").value = usuarios[id].nombre;
             document.getElementById("pass").value = usuarios[id].pass;
 
 
