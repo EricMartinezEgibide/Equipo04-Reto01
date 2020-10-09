@@ -120,7 +120,12 @@ th, td{
 h3{
 	font-size: 20px;
 }
-
+nav p{
+	display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 900;
+}
 footer{
 	background-color: black;
 	color: white;
@@ -134,7 +139,7 @@ footer p{
 	align-self: center;
 }
 
-@media only screen and (min-width: 401px) and (max-width: 900px){
+@media only screen and (min-width: 450px) and (max-width: 900px){
 		nav{
 		display: flex;
 	}
