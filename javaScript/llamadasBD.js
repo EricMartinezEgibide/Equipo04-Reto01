@@ -261,6 +261,10 @@ function modificarUsuario() {
     }else{
         //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
         alert("El usuario que está intentando modificar no existe.")
+
+        //NUEVO Ésto se debe a que la nueva interfaz de usuario utiliza en mismo botón para editar y para crear.
+        crearUsuario();
+
     }
 
 
@@ -268,10 +272,20 @@ function modificarUsuario() {
 
 function leerUsuarios() {
 
+    iniciarBD();
+
+    usuariosTabla = {};
+
     for (let i = 0; i < usuarios.length; i++) {
-        //Aquí añadiremos los campos a rellenar a la hora de la visualización de los elementos.
+        //Creo un nuevo array de usuarios con la nomenclatura que han definido en la tabla.
+        let usuario = {nombre: usuarios[i].nombre, apellido1: usuarios[i].apellido1, apellido2: usuarios[i].apellido2, nick: usuarios[i].nick, pass: usuarios[i].pass};
+        usuariosTabla.push(usuario);
+
+
         console.log(usuarios[i].nick)
     }
+
+    return usuariosTabla;
 
 }
 
@@ -513,4 +527,123 @@ function fechaActualSimple(){
         + fecha.getFullYear() + "";
 
     return fecha;
+}
+
+//GENERADORES DE INTERFAZ
+function generarInterfazUsuario(){
+    iniciarBD();
+
+    let divGeneral = "";
+
+    for (let i = 0; i < usuarios.length; i++) {
+        let divLocal = "";
+
+        divLocal += "<div>";//Abrimos div
+
+
+
+            //AÑADO LOS CAMPOS
+            divLocal += "<p>"
+            divLocal += usuarios[i].nick
+            divLocal += "</p>"
+            divLocal += usuarios[i].nombre
+            divLocal += "</p>"
+            divLocal += usuarios[i].apellido1
+            divLocal += "</p>"
+            divLocal += usuarios[i].apellido2
+            divLocal += "</p>"
+
+            //BOTONES CON SU ID
+            divLocal += '<button id="btModificar'
+            divLocal += i
+            divLocal += '" onclick = "modificarUsuario()">Modificar usuario</button>'
+
+            divLocal += '<button id="btEliminar'
+            divLocal += i
+            divLocal += '" onclick = "borrarUsuario()">Borrar usuario</button>'
+
+
+
+            //Cierro el div.
+            divLocal += "</div>";
+
+            //Concateno el resultado.
+            divGeneral += divLocal;
+    }
+
+
+        console.log(divGeneral)
+
+    //ENVIAR EL divGeneral
+        avisoABorrar = document.getElementById("contenedor").insertAdjacentHTML("beforeend",divGeneral);
+
+    /*
+
+
+                <div>
+					<p>Nick</p>
+					<p>Pedro</p>
+					<p>Gutierrez</p>
+					<p>Perez</p>
+					<button id="btModificar1" onclick = "modificarUsuario()">Modificar usuario</button>
+					<button id="btEliminar1" onclick = "eliminar()">Eliminar usuario</button>
+				</div>
+
+
+
+
+
+    <html>
+	<head>
+		<title>prueba</title>
+	</head>
+	<body>
+		<form>
+			<div id="contenedor">
+
+				<div>
+					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
+					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
+					&nbsp;
+					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
+				</div>
+				<div>
+					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
+					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
+					&nbsp;
+					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
+				</div>
+				<div>
+					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
+					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
+					&nbsp;
+					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
+				</div>
+				<div>
+					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
+					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
+					&nbsp;
+					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
+				</div>
+				<div>
+					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
+					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
+					&nbsp;
+					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
+				</div>
+				<div>
+					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
+					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
+					&nbsp;
+					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>
+     */
+
+
+
+
 }
