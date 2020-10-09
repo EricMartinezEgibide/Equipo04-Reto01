@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 *{
 	margin: 0 auto;
 }
@@ -10,23 +12,24 @@ body{
 	font-family: 'Montserrat', sans-serif;
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
+	height: 100%;
 }
 header{
 	display: flex;
-  	width: 100vw;
+  	width: 100%;
+  	position: absolute;
   	box-shadow: 0 0 7px 1px #00000057;
-}
+} 
 main{
 	color: black;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 }
 nav ul {
   	display: none;
   	padding: 0;
   	margin: 0;
-  	width: 100vw;
+  	width: 100%;
 }
 
 .logopagina{
@@ -48,7 +51,12 @@ nav ul li {
 	margin: 0;
 	font-size: 2em;
 }
-
+nav p{
+	display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 900;
+}
 ul.menu{
 	display: flex;
 	flex-direction: column;
@@ -60,9 +68,8 @@ ul.menu{
 #navigation{
 	background-color: #5C5C5C;
 	display: flex;
-	height: 100px;
 	transition: 0s;
-	width: 100vw; 
+	width: 100%; 
 }
 
 .menu{
@@ -70,13 +77,13 @@ ul.menu{
 	position: absolute;
 	width: 100%;
 	list-style-type: none;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 #check{
 	display: none;
 }
 .checkbtn{
-	font-size: 5em;
+	font-size: 3em;
 	color: white;
 }
 .close{
@@ -96,20 +103,39 @@ ul.menu{
 section{
 	display: flex;
 	flex-direction: column;
-	margin: 10%;
+	margin: 10% 0;
+}
+#section_form{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+#section_table{
+	display: flex;
+	flex-wrap: wrap;
+}
+input{
 	width: 80%;
+}
+#btnsubmit{
+	width: 100%;
+}
+th, td{
+	font-size: 10px;
 }
 h3{
 	font-size: 20px;
 }
-
+form{
+	width: 100%;
+}
 footer{
 	background-color: black;
 	color: white;
 	display: flex;
-	width: 100vw;
+	width: 100%;
     height: 100px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
 }
 footer p{
