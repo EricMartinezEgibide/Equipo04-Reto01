@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
 *{
 	margin: 0 auto;
 }
 h1{
 	font-family: 'Poppins', sans-serif;
+}
+h4{
+	margin: 5%;
+	text-align: center;
+	width: 100%;
 }
 body{
 	font-family: 'Montserrat', sans-serif;
@@ -14,12 +20,16 @@ body{
 	flex-direction: column;
 	height: 100%;
 }
+input{
+	font-family: 'Montserrat', sans-serif;
+
+}
 header{
 	display: flex;
   	width: 100%;
-  	position: absolute;
+  	position: fixed;
   	box-shadow: 0 0 7px 1px #00000057;
-} 
+}
 main{
 	color: black;
 	width: 100%;
@@ -46,17 +56,12 @@ nav ul li a{
 
 nav ul li {
 	background-color: #5C5C5C;
-	width: 100vw;
+	width: 100%;
 	padding: 4% 0;
 	margin: 0;
 	font-size: 2em;
 }
-nav p{
-	display: flex;
-    align-items: center;
-    color: white;
-    font-weight: 900;
-}
+
 ul.menu{
 	display: flex;
 	flex-direction: column;
@@ -88,7 +93,6 @@ ul.menu{
 }
 .close{
 	display: none;
-	color: white;
 }
 #check:checked~.menu{
 	visibility: visible;
@@ -110,24 +114,82 @@ section{
 	flex-direction: row;
 	flex-wrap: wrap;
 }
+#section_form div{
+	overflow: hidden;
+	font-size: 40px;
+	padding: 2%;
+	width: 100%;
+	margin: 5%;
+	border-bottom: 1px solid lightgrey;
+}
+
+#section_form div input{
+	border: none;
+	outline: none;
+	background: none;
+	color: black;
+	font-size: 10px;
+	float: left;
+	margin: 0 10px;
+	line-height: 1.65em;
+	font-size: 11pt;
+}
+input [type="text"], input[type="password"]{
+	background: rgba(144, 144, 144, 0.25);
+	border-radius: 3px;
+    border: none;
+    color: inherit;
+    display: block;
+    outline: 0;
+    text-decoration: none;
+    width: 100%;
+    font-size: 11pt;
+    letter-spacing: 0.0375em;
+}
+input [type="button"]{
+	background-color: #FF8110;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    width: 100%;
+    margin: 5%;
+	font-size: 11pt;
+}
+#add_row{
+	width: 100%;
+    margin: 5%;
+    background-color: #F49F0A;
+    border-color: orange;
+    border-radius: 2%;
+    padding: 5%;
+}
 #section_table{
 	display: flex;
 	flex-wrap: wrap;
-}
-input{
-	width: 80%;
-}
-#btnsubmit{
-	width: 100%;
+	margin-bottom: 25%;
 }
 th, td{
 	font-size: 10px;
+	font-weight: bold;
 }
 h3{
 	font-size: 20px;
 }
-form{
-	width: 100%;
+#container{
+	display: flex;
+	flex-direction: column;
+}
+#cabecera{
+	display: flex;
+}
+#cabecera p{
+	width: 20%;
+	text-align: center;
+}
+#containt_divs div{
+	display: flex;
+}
+#containt_divs div p{
+	padding: 5%;
 }
 footer{
 	background-color: black;
@@ -141,6 +203,7 @@ footer{
 footer p{
 	align-self: center;
 }
+
 @media only screen and (min-width: 401px) and (max-width: 900px){
 	nav{
 		display: flex;
