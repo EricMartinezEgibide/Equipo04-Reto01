@@ -639,7 +639,52 @@ function generarInterfazUsuario(){
 
 
 }
+function generarInterfazAvisos() {
+    iniciarBD();
 
+    let divGeneral = "";
+
+
+    for (let i = 0; i < avisos.length; i++) {
+        let divLocal = "";
+
+        divLocal += "<div>";//Abrimos div
+
+
+
+        //AÑADO LOS CAMPOS
+        divLocal += "<p>"
+        divLocal += avisos[i].titulo
+        divLocal += "</p>"
+        divLocal += avisos[i].descripcion
+        divLocal += "</p>"
+        divLocal += avisos[i].prioridad
+        divLocal += "</p>"
+
+        //BOTONES CON SU ID
+        divLocal += '<button id="btModificar'
+        divLocal += i
+        divLocal += '" onclick = "rellenarCamposUsuario(this.id)">Modificar usuario</button>'
+
+        divLocal += '<button id="btEliminar'
+        divLocal += i
+        divLocal += '" onclick = "borrarUsuario(this.id)">Borrar usuario</button>'
+
+
+
+        //Cierro el div.
+        divLocal += "</div>";
+
+        //Concateno el resultado.
+        divGeneral += divLocal;
+    }
+
+
+    console.log(divGeneral)
+
+    //ENVIAR EL divGeneral
+    avisoABorrar = document.getElementById("containt_divs").insertAdjacentHTML("beforeend",divGeneral);
+}
 
 //Urko utilizar también
 function obtenerIdBoton(idBoton){
