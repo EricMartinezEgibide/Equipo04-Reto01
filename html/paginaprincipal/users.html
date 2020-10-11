@@ -10,7 +10,7 @@
 	<meta charset="utf-8">
 
 </head>
-<body>
+<body onload="generarInterfazUsuario()">
 	<header>
 		<nav id="navigation">
 
@@ -28,6 +28,11 @@
 				<li><a href="users.html">Usuarios</a></li>
 				<li><a href="alerts.html">Avisos</a></li>
 			</ul>
+
+			<p>AERONAUTICS ENGINES S.A</p>
+			<label for="checkuser" class="checkbtn user">
+				<i class="far fa-user"></i>
+			</label>
 		</nav>
 	</header>
 	<main>
@@ -45,12 +50,12 @@
 						<input type="text" name="surname2" id="surname2" placeholder="Segundo apellido" required/>
 					</div>
 					<div>
-						<input type="text" name="nickname" id="nickname" placeholder="Alias/Nombre usuario" required/>
+						<input type="text" name="nick" id="nickname" placeholder="Alias" required/>
 					</div>
 					<div>
 						<input type="password" name="pass" id="pass" placeholder="Contraseña" required/>
 					</div>
-						<input type="button" name="btnsubmit" value="Enviar datos" class="principal" id="add_row" target="_blank"/>
+						<input type="button" name="btnsubmit" value="Enviar datos" class="principal" id="add_row" target="_blank" onclick="modificarUsuario()" />
 				</section>
 						
 				<section id="section_table">
@@ -63,14 +68,7 @@
 							<p>Acción</p>
 						</div>
 						<div id="containt_divs">
-							<div>
-								<p>ardfg</p>
-								<p>adfv</p>
-								<p>zbdg</p>
-								<p>sgfb</p>
-								<button><i class="fas fa-user-edit"></i></button>
-								<button><i class="fas fa-user-slash"></i></button>
-							</div>
+							
 							
 						</div>
 					</div>		
@@ -81,6 +79,6 @@
 	<footer>
 			<p>Designed by NUE</p>
 	</footer>
-	<script src="../../javaScript/dynamictable.js"></script><!--Poner el link de js-->
-	<script src="../../javaScript/jquery.min.js"></script>
+	<script src="../../javaScript/llamadasBD.js"></script>
 </body>
+</html>

@@ -128,10 +128,10 @@ function registrarUsuario(){
     iniciarBD();
 
     //Primero obtenemos los datos introducidos en el formulario.
-    let nombreLocal = document.getElementById("txNombre").value;
-    let apellido1Local = document.getElementById("txApellido1").value;
-    let apellido2Local = document.getElementById("txApellido2").value;
-    let passLocal = document.getElementById("txPass2").value;
+    let nombreLocal = document.getElementById("name").value;
+    let apellido1Local = document.getElementById("surname1").value;
+    let apellido2Local = document.getElementById("surname2").value;
+    let passLocal = document.getElementById("pass").value;
 
     //Luego generamos un nick uniendo sus iniciales y la fecha actual.
     let nickLocal = nombreLocal.charAt(0) + apellido1Local.charAt(0) + fechaActualSimple();
@@ -193,7 +193,7 @@ function borrarUsuario() {
     let encontrado = false;
 
     //Recojo el nick introducido por el usuario.
-    usuarioAEliminar = document.getElementById("txNick2").value;
+    usuarioAEliminar = document.getElementById("nickname").value;
 
     //Busco en el array una coincidencia con el nick y cuando lo localizo lo elimino mediante la función ".splice".
     for (let i = 0; i < usuarios.length; i++) {
@@ -226,17 +226,17 @@ function modificarUsuario() {
 
     //Busco el objeto en localstorage y guardo los datos nuevos en variables.
     for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].nick == document.getElementById("txNick2").value) {
+        if (usuarios[i].nick == document.getElementById("nickname").value) {
 
             //Aunque no tenemos una base de datos SQL, he utilizado la variable nick como PK
             //Es por ello que no almaceno el nick introducido en el formulario.
             nick = usuarios[i].nick;
 
             //El resto de parámetros en cambio sí que son leídos y almacenados.
-            nombre = document.getElementById("txNombre").value
-            apellido1 = document.getElementById("txApellido1").value
-            apellido2 = document.getElementById("txApellido2").value
-            pass = document.getElementById("txPass2").value
+            nombre = document.getElementById("name").value
+            apellido1 = document.getElementById("surname1").value
+            apellido2 = document.getElementById("surname2").value
+            pass = document.getElementById("pass").value
 
             //Borro el registro viejo para poderlo sustituir.
             usuarios.splice(i, 1);
@@ -260,7 +260,7 @@ function modificarUsuario() {
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
     }else{
         //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
-        alert("El usuario que está intentando modificar no existe.")
+        //alert("El usuario que está intentando modificar no existe.")
 
         //NUEVO Ésto se debe a que la nueva interfaz de usuario utiliza en mismo botón para editar y para crear.
         crearUsuario();
@@ -289,30 +289,21 @@ function leerUsuarios() {
 
 }
 
-function rellenarCamposUsuario() {
+function rellenarCamposUsuario(idBoton) {
 
     iniciarBD();
 
+    let id = obtenerIdBoton(idBoton)
     //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
-    encontrado = false;
 
-    for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].nick == document.getElementById("txNick2").value) {
 
             //Símplemente relleno los datos del formulario con los que hay en el objeto que coincida con el nick.
-            document.getElementById("txNombre").value = usuarios[i].nombre;
-            document.getElementById("txApellido1").value = usuarios[i].apellido1;
-            document.getElementById("txApellido2").value = usuarios[i].apellido2;
-            document.getElementById("txPass2").value = usuarios[i].pass;
+            document.getElementById("nickname").value = usuarios[id].nick;
+            document.getElementById("name").value = usuarios[id].nombre;
+            document.getElementById("surname1").value = usuarios[id].apellido1;
+            document.getElementById("surname2").value = usuarios[id].apellido2;
+            document.getElementById("pass").value = usuarios[id].pass;
 
-            encontrado = true;
-        }
-    }
-
-    //Si "encontrado" sigue con el valor con el que fué instanciado significa que el usuario no existe.
-    if(encontrado == false){
-        alert("El usuario que intenta buscar no existe.")
-    }
 
 }
 
@@ -535,6 +526,7 @@ function generarInterfazUsuario(){
 
     let divGeneral = "";
 
+
     for (let i = 0; i < usuarios.length; i++) {
         let divLocal = "";
 
@@ -556,11 +548,11 @@ function generarInterfazUsuario(){
             //BOTONES CON SU ID
             divLocal += '<button id="btModificar'
             divLocal += i
-            divLocal += '" onclick = "modificarUsuario()">Modificar usuario</button>'
+            divLocal += '" onclick = "rellenarCamposUsuario(this.id)">Modificar usuario</button>'
 
             divLocal += '<button id="btEliminar'
             divLocal += i
-            divLocal += '" onclick = "borrarUsuario()">Borrar usuario</button>'
+            divLocal += '" onclick = "borrarUsuario(this.id)">Borrar usuario</button>'
 
 
 
@@ -575,7 +567,7 @@ function generarInterfazUsuario(){
         console.log(divGeneral)
 
     //ENVIAR EL divGeneral
-        avisoABorrar = document.getElementById("contenedor").insertAdjacentHTML("beforeend",divGeneral);
+        avisoABorrar = document.getElementById("containt_divs").insertAdjacentHTML("beforeend",divGeneral);
 
     /*
 
@@ -646,4 +638,13 @@ function generarInterfazUsuario(){
 
 
 
+}
+
+
+//Urko utilizar también
+function obtenerIdBoton(idBoton){
+
+    let ultimoCaracter = idBoton.replace('btModificar', '');
+    let intId = parseInt(ultimoCaracter)
+    return intId;
 }
