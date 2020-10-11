@@ -157,6 +157,7 @@ input [type="button"]{
 #add_row{
 	width: 100%;
     margin: 5%;
+    font-size: 1em;
     background-color: #F49F0A;
     border-color: orange;
     border-radius: 2%;
@@ -191,11 +192,20 @@ nav p{
 	width: 20%;
 	text-align: center;
 }
+#containt_divs{
+	width: 100%;
+}
 #containt_divs div{
 	display: flex;
+	align-items: baseline;
 }
 #containt_divs div p{
 	padding: 2%;
+}
+button{
+	margin: 0;
+	background: none;
+	border: none;
 }
 footer{
 	background-color: black;

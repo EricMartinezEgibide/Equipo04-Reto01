@@ -267,7 +267,6 @@ function modificarUsuario() {
 
     }
 
-
 }
 
 function leerUsuarios() {
@@ -298,7 +297,7 @@ function rellenarCamposUsuario(idBoton) {
 
 
             //Símplemente relleno los datos del formulario con los que hay en el objeto que coincida con el nick.
-            document.getElementById("nickname").value = usuarios[id].nick;
+
             document.getElementById("name").value = usuarios[id].nombre;
             document.getElementById("surname1").value = usuarios[id].apellido1;
             document.getElementById("surname2").value = usuarios[id].apellido2;
@@ -562,29 +561,17 @@ function generarInterfazUsuario(){
 
 
             //AÑADO LOS CAMPOS
-            divLocal += "<p>"
-            divLocal += usuarios[i].nick
-            divLocal += "</p>"
-            divLocal += usuarios[i].nombre
-            divLocal += "</p>"
-            divLocal += usuarios[i].apellido1
-            divLocal += "</p>"
-            divLocal += usuarios[i].apellido2
-            divLocal += "</p>"
+            divLocal += "<p>" + usuarios[i].nick + "</p><p>"+ usuarios[i].nombre + "</p><p>" + usuarios[i].apellido1 + "</p><p>" + usuarios[i].apellido2 + "</p>"
+
 
             //BOTONES CON SU ID
-            divLocal += '<button id="btModificar'
-            divLocal += i
-            divLocal += '" onclick = "rellenarCamposUsuario(this.id)"><i class="fas fa-user-edit"></i></button>'
+            divLocal += '<button id="btModificar' + i + '" onclick = "rellenarCamposUsuario(this.id)"><i class="fas fa-user-edit"></i></button>'
 
-            divLocal += '<button id="btEliminar'
-            divLocal += i
-            divLocal += '" onclick = "borrarUsuario(this.id)"><i class="fas fa-user-times"></i></button>'
+            divLocal += '<button id="btEliminar' + i + '" onclick = "borrarUsuario(this.id)"><i class="fas fa-user-times"></i></button>'
 
 
-
-            //Cierro el div.
-            divLocal += "</div>";
+        //Cierro el div.
+        divLocal += "</div>";
 
             //Concateno el resultado.
             divGeneral += divLocal;
@@ -691,11 +678,11 @@ function generarInterfazAvisos() {
         //BOTONES CON SU ID
         divLocal += '<button id="btModificar'
         divLocal += i
-        divLocal += '" onclick = "rellenarCamposAviso(this.id)">Modificar aviso</button>'
+        divLocal += '" onclick = "rellenarCamposAviso(this.id)"><i class="fas fa-user-edit"></i></button>'
 
         divLocal += '<button id="btEliminar'
         divLocal += i
-        divLocal += '" onclick = "borrarAviso(this.id)">Borrar aviso</button>'
+        divLocal += '" onclick = "borrarAviso(this.id)"><i class="fas fa-user-times"></i></button>'
 
 
 
