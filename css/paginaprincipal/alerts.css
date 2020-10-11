@@ -126,6 +126,12 @@ nav p{
     color: white;
     font-weight: 900;
 }
+#section_form div textarea{
+	border: none;
+	margin: 0;
+	width: 100%;
+	height: 11px;
+}
 footer{
 	background-color: black;
 	color: white;
