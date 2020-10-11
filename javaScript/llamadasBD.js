@@ -575,11 +575,11 @@ function generarInterfazUsuario(){
             //BOTONES CON SU ID
             divLocal += '<button id="btModificar'
             divLocal += i
-            divLocal += '" onclick = "rellenarCamposUsuario(this.id)">Modificar usuario</button>'
+            divLocal += '" onclick = "rellenarCamposUsuario(this.id)"><i class="fas fa-user-edit"></i></button>'
 
             divLocal += '<button id="btEliminar'
             divLocal += i
-            divLocal += '" onclick = "borrarUsuario(this.id)">Borrar usuario</button>'
+            divLocal += '" onclick = "borrarUsuario(this.id)"><i class="fas fa-user-times"></i></button>'
 
 
 
