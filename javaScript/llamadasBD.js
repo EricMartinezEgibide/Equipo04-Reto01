@@ -162,13 +162,13 @@ function crearUsuario() {//PARA TESTEOS
     //ES LO MISMO QUE LA FUNCIÓN "REGISTRAR USUARIO" SOLO QUE PARA PRUEBAS INTERNAS Y SIN GENERACIÓN DE NICK.
     iniciarBD();
 
-    let nombreLocal = document.getElementById("txNombre").value;
-    let apellido1Local = document.getElementById("txApellido1").value;
-    let apellido2Local = document.getElementById("txApellido2").value;
-    let nickLocal = document.getElementById("txNick2").value;
-    let passLocal = document.getElementById("txPass2").value;
+    let nombreLocal = document.getElementById("name").value;
+    let apellido1Local = document.getElementById("surname1").value;
+    let apellido2Local = document.getElementById("surname2").value;
+    let nickLocal = document.getElementById("nick").value;
+    let passLocal = document.getElementById("pass").value;
 
-    if(nombreLocal == "" || apellido1Local == "" || apellido2Local == "" || passLocal == "" || nickLocal == ""){
+    if(nombreLocal =="" || apellido1Local == "" || apellido2Local == "" || passLocal == "" || nickLocal == ""){
         alert("Tiene que rellenar todos los campos.")
     }else{
         let usuario = {
@@ -181,6 +181,8 @@ function crearUsuario() {//PARA TESTEOS
 
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        alert("¡Se ha creado el aviso!")
+        location.reload();
     }
 
 }
@@ -258,6 +260,7 @@ function modificarUsuario() {
     if (usuario.nick != null) {
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        location.reload()
     }else{
         //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
         //alert("El usuario que está intentando modificar no existe.")
