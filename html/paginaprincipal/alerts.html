@@ -3,14 +3,14 @@
 <head>
 	<title>Aeronautics Engines S.A</title>
 	<link rel="icon" type="img/png" href="../../img/logotipoAeronauticsEngines.png">
-	<link rel="stylesheet" type="text/css" href="../../css/paginaprincipal/alerts.css">
+	<link rel="stylesheet" type="text/css" href="../../css/paginaprincipal/users.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	<meta charset="utf-8">
 
 </head>
-<body>
+<body onload="generarInterfazAvisos()">
 	<header>
 		<nav id="navigation">
 
@@ -37,10 +37,52 @@
 	</header>
 	<main>
 		<section>
-			
+			<form action="#" method="post">
+				<section id="section_form">
+					<h4>CREACIÓN / MODIFICACIÓN / ELIMINACIÓN DE AVISOS</h4>
+					<div>
+						<input type="text" name="txTitulo2" id="txTitulo2" placeholder="Titulo" required/>
+					</div>
+					<div>
+						<textarea name="txDescripcion2" id="txDescripcion2" placeholder="Descripción del aviso." required></textarea>
+					</div>
+					<div>
+						<fieldset>
+							<legend>Elige la prioridad</legend>
+							<label>
+								<input type="radio" name="prioridad" id="rbBaja" value="Baja"> Baja
+							</label>
+							<label>
+								<input type="radio" name="prioridad" id="rbNormal" value="Normal"> Normal
+							</label>
+							<label>
+								<input type="radio" name="prioridad" id="rbAlta" value="Alta"> Alta
+							</label>
+						</fieldset>
+					</div>
+					<input type="button" name="btnsubmit" value="Enviar datos" class="principal" id="add_row" target="_blank" onclick="modificarAviso()" />
+				</section>
+
+				<section id="section_table">
+					<div id="container">
+						<div id="cabecera">
+							<p>Titulo</p>
+							<p>Descripción</p>
+							<p>Prioridad</p>
+							<p>Acción</p>
+						</div>
+						<div id="containt_divs">
+
+
+						</div>
+					</div>
+				</section>
+			</form>
 		</section>
 	</main>
 	<footer>
-			<p>Designed by NUE</p> 
+		<p>Designed by NUE</p>
 	</footer>
+	<script src="../../javaScript/llamadasBD.js"></script>
 </body>
+</html>

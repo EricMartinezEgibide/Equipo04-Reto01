@@ -342,6 +342,8 @@ function crearAviso() {
         avisos.push(aviso);
 
         localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+        alert("¡Se ha creado el aviso!")
+        location.reload();
     }
 
 
@@ -370,6 +372,8 @@ function borrarAviso() {
     }
 
     localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+    alert("¡Se ha eliminado el aviso!")
+    location.reload();
 }
 
 function leerAvisos() {
@@ -442,17 +446,42 @@ function modificarAviso() {
     if (aviso.titulo != null) {
         avisos.push(aviso);
         localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+        alert("¡Se ha modificado el aviso!")
+        location.reload();
     }else{
-        alert("El aviso que está intentando modificar no existe.")
+        alert("El aviso que está intentando modificar no existe. Por lo que se creará el aviso.")
+        crearAviso();
     }
 
 }
 
-function rellenarCamposAviso() {
+function rellenarCamposAviso(idBoton) {
 
     iniciarBD();
 
-    //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
+    let id = obtenerIdBoton(idBoton)
+
+            document.getElementById("txTitulo2").value = avisos[id].titulo;
+            document.getElementById("txDescripcion2").value = avisos[id].descripcion;
+
+            //Lo único un poco peculiar aquí es éste switch que se encarga de marcar el Radio button correcto.
+            switch (avisos[id].prioridad){
+
+                case 0:
+                    document.getElementById("rbBaja").checked = true;
+                    break;
+
+                case 1:
+                    document.getElementById("rbNormal").checked = true;
+                    break;
+
+                case 2:
+                    document.getElementById("rbAlta").checked = true;
+                    break;
+
+            }
+        /*
+        //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
     encontrado = false;
 
     //Primero busco el aviso en el local storage en base al título introducido por el usuario.
@@ -482,13 +511,11 @@ function rellenarCamposAviso() {
             encontrado = true;
 
         }
-    }
-
-    //Si "encontrado" sigue con el valor con el que fué instanciado significa que el usuario no existe.
+        //Si "encontrado" sigue con el valor con el que fué instanciado significa que el usuario no existe.
     if(encontrado == false){
         alert("El aviso que intenta buscar no existe.")
     }
-
+         */
 }
 
 
@@ -639,7 +666,52 @@ function generarInterfazUsuario(){
 
 
 }
+function generarInterfazAvisos() {
+    iniciarBD();
 
+    let divGeneral = "";
+
+
+    for (let i = 0; i < avisos.length; i++) {
+        let divLocal = "";
+
+        divLocal += "<div>";//Abrimos div
+
+
+
+        //AÑADO LOS CAMPOS
+        divLocal += "<p>"
+        divLocal += avisos[i].titulo
+        divLocal += "</p>"
+        divLocal += avisos[i].descripcion
+        divLocal += "</p>"
+        divLocal += avisos[i].prioridad
+        divLocal += "</p>"
+
+        //BOTONES CON SU ID
+        divLocal += '<button id="btModificar'
+        divLocal += i
+        divLocal += '" onclick = "rellenarCamposAviso(this.id)">Modificar aviso</button>'
+
+        divLocal += '<button id="btEliminar'
+        divLocal += i
+        divLocal += '" onclick = "borrarAviso(this.id)">Borrar aviso</button>'
+
+
+
+        //Cierro el div.
+        divLocal += "</div>";
+
+        //Concateno el resultado.
+        divGeneral += divLocal;
+    }
+
+
+    console.log(divGeneral)
+
+    //ENVIAR EL divGeneral
+    avisoABorrar = document.getElementById("containt_divs").insertAdjacentHTML("beforeend",divGeneral);
+}
 
 //Urko utilizar también
 function obtenerIdBoton(idBoton){
