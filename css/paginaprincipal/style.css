@@ -150,18 +150,37 @@ footer{
 footer p{
 	align-self: center;
 }
-@media only screen and (min-width: 950px){
+@media only screen and (min-width: 950px) and (max-width: 1300px){
+	h4{
+		margin-top: 8%;
+	}
 	ul.menu{
 		display: flex;
-		height: 100px;
 		flex-direction: row;
-		align-self: center;
+		font-size: 11px;
+		width: 40%;
+		margin: 1.5%;
+		padding-left: 10%;
+	}
+	#navigation p{
+		width: 30%;
+		margin: 0;
+		margin-right: 40%; 
 	}
 	#check, .checkbtn{
 		display: none;
 	}
+	.user{
+		display: block;
+		width: 5%;
+		margin: 0;
+	}
 	#navigation{
-		height: 200px;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-self: auto;
 	}
 	nav ul li{
 		padding: 0;
@@ -170,3 +189,42 @@ footer p{
 		align-self: end;
 	}
 }
+@media only screen and (min-width: 1301px){
+	h4{
+		margin-top: 8%;
+	}
+	ul.menu{
+		display: flex;
+		flex-direction: row;
+		font-size: 11px;
+		width: 40%;
+		margin: 1%;
+		padding-left: 10%;
+	}
+	#navigation p{
+		width: 30%;
+		margin: 0;
+		margin-right: 40%; 
+	}
+	#check, .checkbtn{
+		display: none;
+	}
+	.user{
+		display: block;
+		width: 5%;
+		margin: 0;
+	}
+	#navigation{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-self: auto;
+	}
+	nav ul li{
+		padding: 0;
+		display: flex;
+		width: 33%;
+		align-self: end;
+	}
+}	
