@@ -8,6 +8,14 @@
 h1{
 	font-family: 'Poppins', sans-serif;
 }
+h4{
+	margin: 5%;
+	text-align: center;
+	margin-top: 30%; 
+}
+a{
+	color: white;
+}
 body{
 	font-family: 'Montserrat', sans-serif;
 	display: flex;
@@ -120,8 +128,10 @@ input{
 #btnsubmit{
 	width: 100%;
 }
-th, td{
-	font-size: 10px;
+main p{
+	margin: 10%;
+	line-height: 1.65em;
+	font-size: 11pt;
 }
 h3{
 	font-size: 20px;
