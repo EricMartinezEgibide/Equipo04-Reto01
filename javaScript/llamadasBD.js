@@ -155,6 +155,7 @@ function registrarUsuario() {
 
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        alert("El usuario ha sido registrado correctamente.")
         location.reload();
     }
 
@@ -185,11 +186,11 @@ function crearUsuario() {//PARA TESTEOS
 
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
-        alert("¡Se ha creado el aviso!")
+        alert("Nuevo usuario añadido correctamente.")
         location.reload();
     }
 
-}
+}//SOLO PARA DEBUG
 
 function borrarUsuario(idBoton) {
 
@@ -204,7 +205,7 @@ function borrarUsuario(idBoton) {
     //Por último cargo la nueva colección de datos en "datosUsuarios" reemplazando los actuales.
     localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
-
+    alert("Usuario eliminado correctamente.")
     location.reload();
 }
 
@@ -246,7 +247,7 @@ function modificarUsuario() {
         if (usuario.nick != null) {
             usuarios.push(usuario);
             localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
-            alert("¡Se ha modificado el usuario!")
+            alert("Usuario modificado correctamente.")
             location.reload()
         } else {
             //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
@@ -340,38 +341,28 @@ function crearAviso() {
         avisos.push(aviso);
 
         localStorage.setItem('datosAvisos', JSON.stringify(avisos));
-        alert("¡Se ha creado el aviso!")
+        location.reload();
+        alert("Aviso creado correctamente")
         location.reload();
     }
 
 
 }
 
-function borrarAviso() {
+function borrarAviso(idBoton) {
     iniciarBD();
 
-    //Creo un boolean para saber si se ha encontrado un aviso con ese nick o no.
-    let encontrado = false;
+    //Tratamos la id
+    id = obtenerIdBotonEliminar(idBoton);
 
-    //Recojo el titulo introducido por el usuario.
-    avisoABorrar = document.getElementById("txTitulo2").value;
+    //Elimino el aviso del array local
+    avisos.splice(id, 1);
 
-    //Busco en el array una coincidencia con el titulo y cuando lo localizo lo elimino mediante la función ".splice".
-    for (let i = 0; i < avisos.length; i++) {
-        if (avisos[i].titulo == avisoABorrar) {
-            avisos.splice(i, 1);
-            encontrado = true;
-        }
-    }
-
-    //Si "encontrado" sigue con el valor con el que fué instanciado significa que el aviso no existe.
-    if (encontrado == false) {
-        alert("El aviso que intenta eliminar no existe.")
-    }
-
+    //Actualizo los datos en el storage
     localStorage.setItem('datosAvisos', JSON.stringify(avisos));
-    alert("¡Se ha eliminado el aviso!")
     location.reload();
+    alert("Aviso borrado correctamente")
+
 }
 
 function leerAvisos() {
@@ -401,61 +392,64 @@ function modificarAviso() {
 
     iniciarBD()
 
-    //Creo las variables para poder referenciarlas fuera del for.
-    let titulo;
-    let descripcion;
-    let prioridad;
-    let fecha;
+    if (idLocal == "") {
+        crearAviso();
+    } else {
 
-    //Busco el objeto en localstorage y guardo los datos nuevos en variables.
-    for (let i = 0; i < avisos.length; i++) {
-        if (avisos[i].titulo == document.getElementById("txTitulo2").value) {
+        let id = obtenerIdBotonModificar(idLocal);
 
-            //Al igual que el "nick" del usuario, el "título" es la PK de los elementos "avisos".
-            titulo = avisos[i].titulo;
-            descripcion = document.getElementById("txDescripcion2").value;
+        //Creo las variables para poder referenciarlas fuera del for.
+        let prioridad;
+        let fecha;
 
-            //Una vez mas comprobamos qué radio button está activado.
-            if (document.getElementById("rbBaja").checked) {
-                prioridad = 0;
-            } else if (document.getElementById("rbNormal").checked) {
-                prioridad = 1;
-            } else {
-                prioridad = 2;
-            }
 
-            //La fecha de creación no la modificamos para evitar cualquier tipo de adulterio.
-            fecha = avisos[i].fecha;
+        let titulo = document.getElementById("txTitulo2").value;
+        let descripcion = document.getElementById("txDescripcion2").value;
 
-            //Borro el registro viejo para poderlo sustituir.
-            avisos.splice(i, 1);
+        //Una vez mas comprobamos qué radio button está activado.
+        if (document.getElementById("rbBaja").checked) {
+            prioridad = 0;
+        } else if (document.getElementById("rbNormal").checked) {
+            prioridad = 1;
+        } else {
+            prioridad = 2;
+        }
+
+        //La fecha de creación no la modificamos para evitar cualquier tipo de adulterio.
+        fecha = avisos[id].fecha;
+
+        //Borro el registro viejo para poderlo sustituir.
+        avisos.splice(id, 1);
+
+
+        //Creo un nuevo aviso con los datos introducidos por el usuario.
+        let aviso = {
+            titulo: titulo,
+            descripcion: descripcion,
+            prioridad: prioridad,
+            fecha: fecha
+        };
+
+        //Por último añado el nuevo aviso a localstorage (Siempre y cuando existiese.)
+        if (aviso.titulo != null) {
+            avisos.push(aviso);
+            localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+            location.reload();
+            alert("Aviso modificado correctamente.")
+        } else {
+            alert("El aviso que está intentando modificar no existe. Por lo que se creará el aviso.")
+            crearAviso();
         }
     }
 
-    //Creo un nuevo aviso con los datos introducidos por el usuario.
-    let aviso = {
-        titulo: titulo,
-        descripcion: descripcion,
-        prioridad: prioridad,
-        fecha: fecha
-    };
 
-    //Por último añado el nuevo aviso a localstorage (Siempre y cuando existiese.)
-    if (aviso.titulo != null) {
-        avisos.push(aviso);
-        localStorage.setItem('datosAvisos', JSON.stringify(avisos));
-        alert("¡Se ha modificado el aviso!")
-        location.reload();
-    } else {
-        alert("El aviso que está intentando modificar no existe. Por lo que se creará el aviso.")
-        crearAviso();
-    }
 
 }
 
 function rellenarCamposAviso(idBoton) {
 
     iniciarBD();
+    idLocal = idBoton;
 
     let id = obtenerIdBotonModificar(idBoton)
 
@@ -638,9 +632,6 @@ function obtenerIdBotonEliminar(idBoton) {
 }
 
 function obtenerIdBotonModificar(idBoton) {
-
-    alert(idBoton)
-
     let ultimoCaracter = idBoton.replace('btModificar', '');
     let intId = parseInt(ultimoCaracter)
     return intId;
