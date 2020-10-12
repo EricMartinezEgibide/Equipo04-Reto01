@@ -187,10 +187,10 @@ function crearUsuario() {//PARA TESTEOS
 
 }
 
-function borrarUsuario() {
+function borrarUsuario(idBoton) {
 
     iniciarBD();
-
+    let id = obtenerIdBoton(idBoton)
     //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
     let encontrado = false;
 
