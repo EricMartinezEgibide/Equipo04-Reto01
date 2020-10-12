@@ -228,7 +228,7 @@ function modificarUsuario() {
 
     //Busco el objeto en localstorage y guardo los datos nuevos en variables.
     for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].nick == document.getElementById("nickname").value) {
+        if (usuarios[i].nick === document.getElementById("nickname").value) {
 
             //Aunque no tenemos una base de datos SQL, he utilizado la variable nick como PK
             //Es por ello que no almaceno el nick introducido en el formulario.
@@ -264,7 +264,7 @@ function modificarUsuario() {
     }else{
         //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
         //alert("El usuario que está intentando modificar no existe.")
-
+        alert("El usuario que está intentando modificar no existe. Por lo que se creará el usuario.")
         //NUEVO Ésto se debe a que la nueva interfaz de usuario utiliza en mismo botón para editar y para crear.
         crearUsuario();
 
