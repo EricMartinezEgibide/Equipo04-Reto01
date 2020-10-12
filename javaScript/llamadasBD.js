@@ -228,7 +228,7 @@ function modificarUsuario() {
 
     //Busco el objeto en localstorage y guardo los datos nuevos en variables.
     for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].nick === document.getElementById("nickname").value) {
+        if (usuarios[i].nick == document.getElementById("nickname").value) {
 
             //Aunque no tenemos una base de datos SQL, he utilizado la variable nick como PK
             //Es por ello que no almaceno el nick introducido en el formulario.
@@ -260,6 +260,7 @@ function modificarUsuario() {
     if (usuario.nick != null) {
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        alert("¡Se ha modificado el usuario!")
         location.reload()
     }else{
         //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
