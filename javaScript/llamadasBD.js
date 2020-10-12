@@ -673,9 +673,9 @@ function generarInterfazAvisos() {
         //AÑADO LOS CAMPOS
         divLocal += "<p>"
         divLocal += avisos[i].titulo
-        divLocal += "</p>"
+        divLocal += "</p><p>"
         divLocal += avisos[i].descripcion
-        divLocal += "</p>"
+        divLocal += "</p><p>"
         divLocal += avisos[i].prioridad
         divLocal += "</p>"
 

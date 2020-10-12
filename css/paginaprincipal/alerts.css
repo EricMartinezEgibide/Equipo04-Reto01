@@ -2,11 +2,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
 *{
 	margin: 0 auto;
 }
 h1{
 	font-family: 'Poppins', sans-serif;
+}
+h3{
+	font-size: 20px;
+}
+h4{
+	margin: 5%;
+	text-align: center;
 }
 body{
 	font-family: 'Montserrat', sans-serif;
@@ -14,31 +22,40 @@ body{
 	flex-direction: column;
 	height: 100%;
 }
+input, textarea{
+	font-family: 'Montserrat', sans-serif;
+
+}
 header{
 	display: flex;
   	width: 100%;
   	position: fixed;
   	box-shadow: 0 0 7px 1px #00000057;
 }
+a{
+	color: white;
+}
 main{
 	color: black;
 	width: 100%;
 	height: 100%;
 }
+/*Menu*/
 nav ul {
   	display: none;
   	padding: 0;
   	margin: 0;
   	width: 100%;
 }
-input,textarea{
-	font-family: 'Montserrat', sans-serif;
-	width: 100%;
+
+
+nav p{
+	display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 900;
 }
-fieldset{
-	font-size: 15px;
-	width: 100%;
-}
+
 .logopagina{
   	height: 100px;
   	margin-right: 42%;
@@ -71,7 +88,7 @@ ul.menu{
 	background-color: #5C5C5C;
 	display: flex;
 	transition: 0s;
-	width: 100%; 
+	width: 100%;
 }
 
 .menu{
@@ -101,74 +118,74 @@ ul.menu{
 #check:checked~.close{
 	display: block;
 }
+/*Section grande: formulario y tabla */
+form{
+	margin: 0;
+	width: 100%;
+}
 section{
 	display: flex;
 	flex-direction: column;
 	margin: 10% 0;
+	width: 100%;
 }
 #section_form{
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-}
-#section_table{
-	display: flex;
-	flex-wrap: wrap;
-}
-#btnsubmit{
 	width: 100%;
 }
-th, td{
-	font-size: 10px;
-}
-h3{
-	font-size: 20px;
-}
-nav p{
-	display: flex;
-    align-items: center;
-    color: white;
-    font-weight: 900;
-}
-form{
-	width: 100%;
-}
-h4{
-	margin: 0;
-	text-align: center;
-}
-#section_form div{
-	display: flex;
-    justify-content: center;
-    overflow: hidden;
+.iborder{
+	overflow: hidden;
+	font-size: 40px;
 	padding: 2%;
-	width: 100%;
+	width: 85%;
 	margin: 5%;
 	border-bottom: 1px solid lightgrey;
 }
-#section_form div input{
+.iborder input, .iborder textarea{
 	border: none;
+	line-height: 1.65em;
+	font-size: 11pt;
 }
-#section_form div textarea{
-	border: none;
+#container{
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+#cabecera{
+	display: flex;
+	margin: 0;
+}
+#cabecera p{
+	text-align: center;
+}
+
+#containt_divs{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+#containt_divs div{
+	display: flex;
 	margin: 0;
 	width: 100%;
-	height: 11px;
 }
-#section_table div{
+#containt_divs div p{
+	padding: 2%;
+}
+#add_row{
+    margin: 5%;
+    font-size: 1em;
+    background-color: #F49F0A;
+    border-color: orange;
+    border-radius: 2%;
+    padding: 5%;
+    cursor: pointer;
+}
+button{
 	margin: 0;
-}
-legend{
-	margin: 0;
-}
-legend div{
-	text-align: end;
-	border: 0;
-}
-#prioridad_grande{
-	border: none;
-}
-#prioridades{
+	background: none;
 	border: none;
 }
 footer{
@@ -182,7 +199,7 @@ footer{
 footer p{
 	align-self: center;
 }
-
+/*Media queries computer*/
 @media only screen and (min-width: 950px){
 	ul.menu{
 		display: flex;
@@ -201,5 +218,40 @@ footer p{
 		display: flex;
 		width: 33%;
 		align-self: end;
+	}
+	form input{
+		font-size: 3em;
+	}
+}
+	display: flex;
+	width: 100%;
+    height: 100px;
+    bottom: 0;
+}
+footer p{
+	align-self: center;
+}
+/*Media queries computer*/
+@media only screen and (min-width: 950px){
+	ul.menu{
+		display: flex;
+		height: 100px;
+		flex-direction: row;
+		align-self: center;
+	}
+	#check, .checkbtn{
+		display: none;
+	}
+	#navigation{
+		height: 200px;
+	}
+	nav ul li{
+		padding: 0;
+		display: flex;
+		width: 33%;
+		align-self: end;
+	}
+	form input{
+		font-size: 3em;
 	}
 }
