@@ -31,7 +31,14 @@ nav ul {
   	margin: 0;
   	width: 100%;
 }
-
+input,textarea{
+	font-family: 'Montserrat', sans-serif;
+	width: 100%;
+}
+fieldset{
+	font-size: 15px;
+	width: 100%;
+}
 .logopagina{
   	height: 100px;
   	margin-right: 42%;
@@ -101,15 +108,12 @@ section{
 }
 #section_form{
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	flex-wrap: wrap;
 }
 #section_table{
 	display: flex;
 	flex-wrap: wrap;
-}
-input{
-	width: 80%;
 }
 #btnsubmit{
 	width: 100%;
@@ -126,11 +130,46 @@ nav p{
     color: white;
     font-weight: 900;
 }
+form{
+	width: 100%;
+}
+h4{
+	margin: 0;
+	text-align: center;
+}
+#section_form div{
+	display: flex;
+    justify-content: center;
+    overflow: hidden;
+	padding: 2%;
+	width: 100%;
+	margin: 5%;
+	border-bottom: 1px solid lightgrey;
+}
+#section_form div input{
+	border: none;
+}
 #section_form div textarea{
 	border: none;
 	margin: 0;
 	width: 100%;
 	height: 11px;
+}
+#section_table div{
+	margin: 0;
+}
+legend{
+	margin: 0;
+}
+legend div{
+	text-align: end;
+	border: 0;
+}
+#prioridad_grande{
+	border: none;
+}
+#prioridades{
+	border: none;
 }
 footer{
 	background-color: black;

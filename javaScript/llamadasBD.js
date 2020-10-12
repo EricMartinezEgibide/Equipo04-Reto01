@@ -162,13 +162,13 @@ function crearUsuario() {//PARA TESTEOS
     //ES LO MISMO QUE LA FUNCIÓN "REGISTRAR USUARIO" SOLO QUE PARA PRUEBAS INTERNAS Y SIN GENERACIÓN DE NICK.
     iniciarBD();
 
-    let nombreLocal = document.getElementById("txNombre").value;
-    let apellido1Local = document.getElementById("txApellido1").value;
-    let apellido2Local = document.getElementById("txApellido2").value;
-    let nickLocal = document.getElementById("txNick2").value;
-    let passLocal = document.getElementById("txPass2").value;
+    let nombreLocal = document.getElementById("name").value;
+    let apellido1Local = document.getElementById("surname1").value;
+    let apellido2Local = document.getElementById("surname2").value;
+    let nickLocal = document.getElementById("nick").value;
+    let passLocal = document.getElementById("pass").value;
 
-    if(nombreLocal == "" || apellido1Local == "" || apellido2Local == "" || passLocal == "" || nickLocal == ""){
+    if(nombreLocal =="" || apellido1Local == "" || apellido2Local == "" || passLocal == "" || nickLocal == ""){
         alert("Tiene que rellenar todos los campos.")
     }else{
         let usuario = {
@@ -181,6 +181,8 @@ function crearUsuario() {//PARA TESTEOS
 
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        alert("¡Se ha creado el aviso!")
+        location.reload();
     }
 
 }
@@ -226,7 +228,7 @@ function modificarUsuario() {
 
     //Busco el objeto en localstorage y guardo los datos nuevos en variables.
     for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].nick == document.getElementById("nickname").value) {
+        if (usuarios[i].nick === document.getElementById("nickname").value) {
 
             //Aunque no tenemos una base de datos SQL, he utilizado la variable nick como PK
             //Es por ello que no almaceno el nick introducido en el formulario.
@@ -258,10 +260,11 @@ function modificarUsuario() {
     if (usuario.nick != null) {
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        location.reload()
     }else{
         //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
         //alert("El usuario que está intentando modificar no existe.")
-
+        alert("El usuario que está intentando modificar no existe. Por lo que se creará el usuario.")
         //NUEVO Ésto se debe a que la nueva interfaz de usuario utiliza en mismo botón para editar y para crear.
         crearUsuario();
 

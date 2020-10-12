@@ -46,18 +46,23 @@
 					<div>
 						<textarea name="txDescripcion2" id="txDescripcion2" placeholder="Descripción del aviso" required></textarea>
 					</div>
-					<div>
+					<div id="prioridad_grande">
 						<fieldset>
-							<legend>Elige la prioridad</legend>
-							<label>
-								<input type="radio" name="prioridad" id="rbBaja" value="Baja"> Baja
-							</label>
-							<label>
-								<input type="radio" name="prioridad" id="rbNormal" value="Normal"> Normal
-							</label>
-							<label>
-								<input type="radio" name="prioridad" id="rbAlta" value="Alta"> Alta
-							</label>
+							<legend>Elige la prioridad</legend><div id="prioridades">
+								<div>
+									<input type="radio" name="prioridad" id="rbBaja" value="Baja"> 
+									<label for="rbBaja">Baja</label>
+								</div>
+								<div>
+									<input type="radio" name="prioridad" id="rbNormal" value="Normal"> 
+									<label for="rbNormal">Normal</label>
+								</div>
+								<div>
+									<input type="radio" name="prioridad" id="rbAlta" value="Alta"> 
+									<label for="rbAlta">Alta</label>
+								</div>
+							</div>
+									
 						</fieldset>
 					</div>
 					<input type="button" name="btnsubmit" value="Enviar datos" class="principal" id="add_row" target="_blank" onclick="modificarAviso()" />
