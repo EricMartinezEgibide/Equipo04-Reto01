@@ -128,10 +128,10 @@ function registrarUsuario(){
     iniciarBD();
 
     //Primero obtenemos los datos introducidos en el formulario.
-    let nombreLocal = document.getElementById("txNombre").value;
-    let apellido1Local = document.getElementById("txApellido1").value;
-    let apellido2Local = document.getElementById("txApellido2").value;
-    let passLocal = document.getElementById("txPass2").value;
+    let nombreLocal = document.getElementById("name").value;
+    let apellido1Local = document.getElementById("surname1").value;
+    let apellido2Local = document.getElementById("surname2").value;
+    let passLocal = document.getElementById("pass").value;
 
     //Luego generamos un nick uniendo sus iniciales y la fecha actual.
     let nickLocal = nombreLocal.charAt(0) + apellido1Local.charAt(0) + fechaActualSimple();
@@ -162,13 +162,13 @@ function crearUsuario() {//PARA TESTEOS
     //ES LO MISMO QUE LA FUNCIÓN "REGISTRAR USUARIO" SOLO QUE PARA PRUEBAS INTERNAS Y SIN GENERACIÓN DE NICK.
     iniciarBD();
 
-    let nombreLocal = document.getElementById("txNombre").value;
-    let apellido1Local = document.getElementById("txApellido1").value;
-    let apellido2Local = document.getElementById("txApellido2").value;
-    let nickLocal = document.getElementById("txNick2").value;
-    let passLocal = document.getElementById("txPass2").value;
+    let nombreLocal = document.getElementById("name").value;
+    let apellido1Local = document.getElementById("surname1").value;
+    let apellido2Local = document.getElementById("surname2").value;
+    let nickLocal = document.getElementById("nick").value;
+    let passLocal = document.getElementById("pass").value;
 
-    if(nombreLocal == "" || apellido1Local == "" || apellido2Local == "" || passLocal == "" || nickLocal == ""){
+    if(nombreLocal =="" || apellido1Local == "" || apellido2Local == "" || passLocal == "" || nickLocal == ""){
         alert("Tiene que rellenar todos los campos.")
     }else{
         let usuario = {
@@ -181,6 +181,8 @@ function crearUsuario() {//PARA TESTEOS
 
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        alert("¡Se ha creado el aviso!")
+        location.reload();
     }
 
 }
@@ -193,7 +195,7 @@ function borrarUsuario() {
     let encontrado = false;
 
     //Recojo el nick introducido por el usuario.
-    usuarioAEliminar = document.getElementById("txNick2").value;
+    usuarioAEliminar = document.getElementById("nickname").value;
 
     //Busco en el array una coincidencia con el nick y cuando lo localizo lo elimino mediante la función ".splice".
     for (let i = 0; i < usuarios.length; i++) {
@@ -226,17 +228,17 @@ function modificarUsuario() {
 
     //Busco el objeto en localstorage y guardo los datos nuevos en variables.
     for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].nick == document.getElementById("txNick2").value) {
+        if (usuarios[i].nick === document.getElementById("nickname").value) {
 
             //Aunque no tenemos una base de datos SQL, he utilizado la variable nick como PK
             //Es por ello que no almaceno el nick introducido en el formulario.
             nick = usuarios[i].nick;
 
             //El resto de parámetros en cambio sí que son leídos y almacenados.
-            nombre = document.getElementById("txNombre").value
-            apellido1 = document.getElementById("txApellido1").value
-            apellido2 = document.getElementById("txApellido2").value
-            pass = document.getElementById("txPass2").value
+            nombre = document.getElementById("name").value
+            apellido1 = document.getElementById("surname1").value
+            apellido2 = document.getElementById("surname2").value
+            pass = document.getElementById("pass").value
 
             //Borro el registro viejo para poderlo sustituir.
             usuarios.splice(i, 1);
@@ -258,15 +260,15 @@ function modificarUsuario() {
     if (usuario.nick != null) {
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        location.reload()
     }else{
         //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
-        alert("El usuario que está intentando modificar no existe.")
-
+        //alert("El usuario que está intentando modificar no existe.")
+        alert("El usuario que está intentando modificar no existe. Por lo que se creará el usuario.")
         //NUEVO Ésto se debe a que la nueva interfaz de usuario utiliza en mismo botón para editar y para crear.
         crearUsuario();
 
     }
-
 
 }
 
@@ -289,30 +291,21 @@ function leerUsuarios() {
 
 }
 
-function rellenarCamposUsuario() {
+function rellenarCamposUsuario(idBoton) {
 
     iniciarBD();
 
+    let id = obtenerIdBoton(idBoton)
     //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
-    encontrado = false;
 
-    for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].nick == document.getElementById("txNick2").value) {
 
             //Símplemente relleno los datos del formulario con los que hay en el objeto que coincida con el nick.
-            document.getElementById("txNombre").value = usuarios[i].nombre;
-            document.getElementById("txApellido1").value = usuarios[i].apellido1;
-            document.getElementById("txApellido2").value = usuarios[i].apellido2;
-            document.getElementById("txPass2").value = usuarios[i].pass;
 
-            encontrado = true;
-        }
-    }
+            document.getElementById("name").value = usuarios[id].nombre;
+            document.getElementById("surname1").value = usuarios[id].apellido1;
+            document.getElementById("surname2").value = usuarios[id].apellido2;
+            document.getElementById("pass").value = usuarios[id].pass;
 
-    //Si "encontrado" sigue con el valor con el que fué instanciado significa que el usuario no existe.
-    if(encontrado == false){
-        alert("El usuario que intenta buscar no existe.")
-    }
 
 }
 
@@ -351,6 +344,8 @@ function crearAviso() {
         avisos.push(aviso);
 
         localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+        alert("¡Se ha creado el aviso!")
+        location.reload();
     }
 
 
@@ -379,6 +374,8 @@ function borrarAviso() {
     }
 
     localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+    alert("¡Se ha eliminado el aviso!")
+    location.reload();
 }
 
 function leerAvisos() {
@@ -451,17 +448,42 @@ function modificarAviso() {
     if (aviso.titulo != null) {
         avisos.push(aviso);
         localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+        alert("¡Se ha modificado el aviso!")
+        location.reload();
     }else{
-        alert("El aviso que está intentando modificar no existe.")
+        alert("El aviso que está intentando modificar no existe. Por lo que se creará el aviso.")
+        crearAviso();
     }
 
 }
 
-function rellenarCamposAviso() {
+function rellenarCamposAviso(idBoton) {
 
     iniciarBD();
 
-    //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
+    let id = obtenerIdBoton(idBoton)
+
+            document.getElementById("txTitulo2").value = avisos[id].titulo;
+            document.getElementById("txDescripcion2").value = avisos[id].descripcion;
+
+            //Lo único un poco peculiar aquí es éste switch que se encarga de marcar el Radio button correcto.
+            switch (avisos[id].prioridad){
+
+                case 0:
+                    document.getElementById("rbBaja").checked = true;
+                    break;
+
+                case 1:
+                    document.getElementById("rbNormal").checked = true;
+                    break;
+
+                case 2:
+                    document.getElementById("rbAlta").checked = true;
+                    break;
+
+            }
+        /*
+        //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
     encontrado = false;
 
     //Primero busco el aviso en el local storage en base al título introducido por el usuario.
@@ -491,13 +513,11 @@ function rellenarCamposAviso() {
             encontrado = true;
 
         }
-    }
-
-    //Si "encontrado" sigue con el valor con el que fué instanciado significa que el usuario no existe.
+        //Si "encontrado" sigue con el valor con el que fué instanciado significa que el usuario no existe.
     if(encontrado == false){
         alert("El aviso que intenta buscar no existe.")
     }
-
+         */
 }
 
 
@@ -535,6 +555,7 @@ function generarInterfazUsuario(){
 
     let divGeneral = "";
 
+
     for (let i = 0; i < usuarios.length; i++) {
         let divLocal = "";
 
@@ -543,29 +564,17 @@ function generarInterfazUsuario(){
 
 
             //AÑADO LOS CAMPOS
-            divLocal += "<p>"
-            divLocal += usuarios[i].nick
-            divLocal += "</p>"
-            divLocal += usuarios[i].nombre
-            divLocal += "</p>"
-            divLocal += usuarios[i].apellido1
-            divLocal += "</p>"
-            divLocal += usuarios[i].apellido2
-            divLocal += "</p>"
+            divLocal += "<p>" + usuarios[i].nick + "</p><p>"+ usuarios[i].nombre + "</p><p>" + usuarios[i].apellido1 + "</p><p>" + usuarios[i].apellido2 + "</p>"
+
 
             //BOTONES CON SU ID
-            divLocal += '<button id="btModificar'
-            divLocal += i
-            divLocal += '" onclick = "modificarUsuario()">Modificar usuario</button>'
+            divLocal += '<button id="btModificar' + i + '" onclick = "rellenarCamposUsuario(this.id)"><i class="fas fa-user-edit"></i></button>'
 
-            divLocal += '<button id="btEliminar'
-            divLocal += i
-            divLocal += '" onclick = "borrarUsuario()">Borrar usuario</button>'
+            divLocal += '<button id="btEliminar' + i + '" onclick = "borrarUsuario(this.id)"><i class="fas fa-user-times"></i></button>'
 
 
-
-            //Cierro el div.
-            divLocal += "</div>";
+        //Cierro el div.
+        divLocal += "</div>";
 
             //Concateno el resultado.
             divGeneral += divLocal;
@@ -575,7 +584,7 @@ function generarInterfazUsuario(){
         console.log(divGeneral)
 
     //ENVIAR EL divGeneral
-        avisoABorrar = document.getElementById("contenedor").insertAdjacentHTML("beforeend",divGeneral);
+        avisoABorrar = document.getElementById("containt_divs").insertAdjacentHTML("beforeend",divGeneral);
 
     /*
 
@@ -646,4 +655,58 @@ function generarInterfazUsuario(){
 
 
 
+}
+function generarInterfazAvisos() {
+    iniciarBD();
+
+    let divGeneral = "";
+
+
+    for (let i = 0; i < avisos.length; i++) {
+        let divLocal = "";
+
+        divLocal += "<div>";//Abrimos div
+
+
+
+        //AÑADO LOS CAMPOS
+        divLocal += "<p>"
+        divLocal += avisos[i].titulo
+        divLocal += "</p>"
+        divLocal += avisos[i].descripcion
+        divLocal += "</p>"
+        divLocal += avisos[i].prioridad
+        divLocal += "</p>"
+
+        //BOTONES CON SU ID
+        divLocal += '<button id="btModificar'
+        divLocal += i
+        divLocal += '" onclick = "rellenarCamposAviso(this.id)"><i class="fas fa-user-edit"></i></button>'
+
+        divLocal += '<button id="btEliminar'
+        divLocal += i
+        divLocal += '" onclick = "borrarAviso(this.id)"><i class="fas fa-user-times"></i></button>'
+
+
+
+        //Cierro el div.
+        divLocal += "</div>";
+
+        //Concateno el resultado.
+        divGeneral += divLocal;
+    }
+
+
+    console.log(divGeneral)
+
+    //ENVIAR EL divGeneral
+    avisoABorrar = document.getElementById("containt_divs").insertAdjacentHTML("beforeend",divGeneral);
+}
+
+//Urko utilizar también
+function obtenerIdBoton(idBoton){
+
+    let ultimoCaracter = idBoton.replace('btModificar', '');
+    let intId = parseInt(ultimoCaracter)
+    return intId;
 }

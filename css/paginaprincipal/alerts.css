@@ -31,7 +31,14 @@ nav ul {
   	margin: 0;
   	width: 100%;
 }
-
+input,textarea{
+	font-family: 'Montserrat', sans-serif;
+	width: 100%;
+}
+fieldset{
+	font-size: 15px;
+	width: 100%;
+}
 .logopagina{
   	height: 100px;
   	margin-right: 42%;
@@ -101,15 +108,12 @@ section{
 }
 #section_form{
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	flex-wrap: wrap;
 }
 #section_table{
 	display: flex;
 	flex-wrap: wrap;
-}
-input{
-	width: 80%;
 }
 #btnsubmit{
 	width: 100%;
@@ -120,41 +124,66 @@ th, td{
 h3{
 	font-size: 20px;
 }
-
+nav p{
+	display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 900;
+}
+form{
+	width: 100%;
+}
+h4{
+	margin: 0;
+	text-align: center;
+}
+#section_form div{
+	display: flex;
+    justify-content: center;
+    overflow: hidden;
+	padding: 2%;
+	width: 100%;
+	margin: 5%;
+	border-bottom: 1px solid lightgrey;
+}
+#section_form div input{
+	border: none;
+}
+#section_form div textarea{
+	border: none;
+	margin: 0;
+	width: 100%;
+	height: 11px;
+}
+#section_table div{
+	margin: 0;
+}
+legend{
+	margin: 0;
+}
+legend div{
+	text-align: end;
+	border: 0;
+}
+#prioridad_grande{
+	border: none;
+}
+#prioridades{
+	border: none;
+}
 footer{
 	background-color: black;
 	color: white;
 	display: flex;
 	width: 100%;
     height: 100px;
-    position: fixed;
     bottom: 0;
 }
 footer p{
 	align-self: center;
 }
 
-@media only screen and (min-width: 401px) and (max-width: 900px){
-		nav{
-		display: flex;
-	}
-	ul.menu{
-		display: flex;
-		flex-direction: row;
-		align-items: flex-end;
-		text-align: center;
-	}
-	#check, .checkbtn{
-		display: none;
-	}
-	nav ul li a {
-		padding: 10%;
-	}
-	nav ul li a:hover{
-		background-color: #f49f0a;
-	}
-}
-@media only screen and (min-width: 901px){
+@media only screen and (min-width: 950px){
 	ul.menu{
 		display: flex;
 		height: 100px;

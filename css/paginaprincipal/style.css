@@ -135,33 +135,12 @@ footer{
 	display: flex;
 	width: 100%;
     height: 100px;
-    position: fixed;
     bottom: 0;
 }
 footer p{
 	align-self: center;
 }
-@media only screen and (min-width: 401px) and (max-width: 900px){
-	nav{
-		display: flex;
-	}
-	ul.menu{
-		display: flex;
-		flex-direction: row;
-		align-items: flex-end;
-		text-align: center;
-	}
-	#check, .checkbtn{
-		display: none;
-	}
-	nav ul li a {
-		padding: 10%;
-	}
-	nav ul li a:hover{
-		background-color: #f49f0a;
-	}
-}
-@media only screen and (min-width: 901px){
+@media only screen and (min-width: 950px){
 	ul.menu{
 		display: flex;
 		height: 100px;

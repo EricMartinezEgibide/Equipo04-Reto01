@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 *{
@@ -74,7 +74,7 @@ ul.menu{
 	background-color: #5C5C5C;
 	display: flex;
 	transition: 0s;
-	width: 100%; 
+	width: 100%;
 }
 
 .menu{
@@ -157,10 +157,15 @@ input [type="button"]{
 #add_row{
 	width: 100%;
     margin: 5%;
+    font-size: 1em;
     background-color: #F49F0A;
     border-color: orange;
     border-radius: 2%;
     padding: 5%;
+    cursor: pointer;
+}
+#add_row:active{
+	background-color: red; 
 }
 #section_table{
 	display: flex;
@@ -174,6 +179,12 @@ th, td{
 h3{
 	font-size: 20px;
 }
+nav p{
+	display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 900;
+}
 #container{
 	display: flex;
 	flex-direction: column;
@@ -185,11 +196,20 @@ h3{
 	width: 20%;
 	text-align: center;
 }
+#containt_divs{
+	width: 100%;
+}
 #containt_divs div{
 	display: flex;
+	align-items: baseline;
 }
 #containt_divs div p{
-	padding: 5%;
+	padding: 2%;
+}
+button{
+	margin: 0;
+	background: none;
+	border: none;
 }
 footer{
 	background-color: black;
@@ -197,34 +217,14 @@ footer{
 	display: flex;
 	width: 100%;
     height: 100px;
-    position: fixed;
     bottom: 0;
 }
 footer p{
 	align-self: center;
 }
 
-@media only screen and (min-width: 401px) and (max-width: 900px){
-	nav{
-		display: flex;
-	}
-	ul.menu{
-		display: flex;
-		flex-direction: row;
-		align-items: flex-end;
-		text-align: center;
-	}
-	#check, .checkbtn{
-		display: none;
-	}
-	nav ul li a {
-		padding: 10%;
-	}
-	nav ul li a:hover{
-		background-color: #f49f0a;
-	}
-}
-@media only screen and (min-width: 901px){
+/*Media queries computer*/
+@media only screen and (min-width: 950px){
 	ul.menu{
 		display: flex;
 		height: 100px;
@@ -242,5 +242,8 @@ footer p{
 		display: flex;
 		width: 33%;
 		align-self: end;
+	}
+	form input{
+		font-size: 3em;
 	}
 }
