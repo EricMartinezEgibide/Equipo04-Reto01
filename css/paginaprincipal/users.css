@@ -207,6 +207,15 @@ nav p{
 #containt_divs div p{
 	padding: 2%;
 }
+
+.principal{
+	font-weight: bold;
+}
+
+#cabecera{
+	font-weight: bold;
+}
+
 button{
 	margin: 0;
 	background: none;
