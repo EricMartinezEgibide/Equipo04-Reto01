@@ -595,16 +595,34 @@ function generarInterfazAvisos() {
 
         divLocal += "<div>";//Abrimos div
 
+        //Creo un nuevo array para poder ordenar los avisos en base a su prioridad y no modificar el orden del array principal.
+        avisosOrdenados = avisos;
+
+        //Mediante una función flecha ordeno los elementos según su prioridad.
+        avisosOrdenados.sort((a, b) => b.prioridad - a.prioridad);
+
 
         //AÑADO LOS CAMPOS
         divLocal += "<p>"
-        divLocal += avisos[i].titulo
+        divLocal += avisosOrdenados[i].titulo
         divLocal += "</p><p>"
-        divLocal += avisos[i].descripcion
+        divLocal += avisosOrdenados[i].descripcion
         divLocal += "</p><p>"
-        divLocal += avisos[i].prioridad
+
+        switch (avisosOrdenados[i].prioridad){
+            case 0:
+                divLocal += "Baja"
+                break;
+            case 1:
+                divLocal += "Normal"
+                break;
+            case 2:
+                divLocal += "Alta"
+                break;
+        }
+
         divLocal += "</p><p>"
-        divLocal += avisos[i].fecha
+        divLocal += avisosOrdenados[i].fecha
         divLocal += "</p>"
 
         //BOTONES CON SU ID
