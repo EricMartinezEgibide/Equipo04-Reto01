@@ -10,7 +10,7 @@
 	<meta charset="utf-8">
 
 </head>
-<body>
+<body onload="generarInterfazAvisos()">
 	<header>
 		<nav id="navigation">
 
@@ -28,14 +28,59 @@
 				<li><a href="users.html">Usuarios</a></li>
 				<li><a href="alerts.html">Avisos</a></li>
 			</ul>
+			
+			<p>AERONAUTICS ENGINES S.A</p>
+			<label for="checkuser" class="checkbtn user">
+				<a href="../index.html"><i class="far fa-user"></i></a>
+			</label>
 		</nav>
 	</header>
 	<main>
 		<section>
+			<form action="#" method="post">
+				<section id="section_form">
+					<h4>AVISOS</h4>
+					<div class="iborder">
+						<input type="text" name="txTitulo2" id="txTitulo2" placeholder="Titulo" required/>
+					</div>
+					<div class="iborder">
+						<textarea name="txDescripcion2" id="txDescripcion2" placeholder="Descripción del aviso" required></textarea>
+					</div>
+						<fieldset>
+							<legend>Elige la prioridad</legend><div id="prioridades">
+								<input type="radio" name="prioridad" id="rbBaja" value="Baja"> 
+								<label for="rbBaja">Baja</label>
+								<input type="radio" name="prioridad" id="rbNormal" value="Normal"> 
+								<label for="rbNormal">Normal</label>
+								<input type="radio" name="prioridad" id="rbAlta" value="Alta"> 
+								<label for="rbAlta">Alta</label>
+							</div>
+									
+						</fieldset>
+					</div>
+					<input type="button" name="btnsubmit" value="Enviar datos" class="principal" id="add_row" target="_blank" onclick="modificarAviso()" />
+				</section>
+			</form>
+				<section id="section_table">
+					<div id="container">
+						<div id="cabecera">
+							<p>Titulo</p>
+							<p>Descripción</p>
+							<p>Prioridad</p>
+							<p>Acción</p>
+						</div>
+						<div id="containt_divs">
+
+
+						</div>
+					</div>
+				</section>
 			
 		</section>
 	</main>
 	<footer>
-			<p>Designed by NUE</p> 
+		<p>Designed by NUE</p>
 	</footer>
+	<script src="../../javaScript/llamadasBD.js"></script>
 </body>
+</html>
