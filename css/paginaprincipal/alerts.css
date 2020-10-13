@@ -183,6 +183,9 @@ section{
     border-radius: 2%;
     padding: 5%;
     cursor: pointer;
+    color: white;
+    width: 90%;
+    font-family: 'Montserrat', sans-serif;
 }
 button{
 	margin: 0;

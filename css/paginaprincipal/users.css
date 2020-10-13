@@ -157,7 +157,6 @@ input [type="button"]{
 	font-size: 11pt;
 }
 #add_row{
-	width: 100%;
     margin: 5%;
     font-size: 1em;
     background-color: #F49F0A;
@@ -166,6 +165,7 @@ input [type="button"]{
     padding: 5%;
     cursor: pointer;
     color: white;
+    width: 90%;
     font-family: 'Montserrat', sans-serif;
 }
 #add_row:active{
