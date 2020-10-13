@@ -1,9 +1,5 @@
 # NUE APP
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
 # 1. ¿Qué es NUE APP?
 NUE APP es una aplicación web multiplataforma basada en html, css y JavaScript para la gestión de usuarios y avisos. La aplicación fue concebida inicialmente para la empresa Aeronautics Engines S.A, pero al tratarse de código abierto siéntase libre de utilizarla como desee.
 
