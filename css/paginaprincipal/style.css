@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+*{
+	margin: 0 auto;
+}
+h1{
+	font-family: 'Poppins', sans-serif;
+}
+h4{
+	margin: 5%;
+	text-align: center;
+	margin-top: 30%; 
+}
+a{
+	color: white;
+}
+body{
+	font-family: 'Montserrat', sans-serif;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+header{
+	display: flex;
+  	width: 100%;
+  	position: absolute;
+  	box-shadow: 0 0 7px 1px #00000057;
+} 
+main{
+	color: black;
+	width: 100%;
+	height: 100%;
+}
+nav ul {
+  	display: none;
+  	padding: 0;
+  	margin: 0;
+  	width: 100%;
+}
+
+.logopagina{
+  	height: 100px;
+  	margin-right: 42%;
+  	padding: 0 20px;
+  	width: 150px;
+}
+nav ul li a{
+	color: white;
+	text-decoration: none;
+	padding-left: 5%;
+}
+
+nav ul li {
+	background-color: #5C5C5C;
+	width: 100vw;
+	padding: 4% 0;
+	margin: 0;
+	font-size: 2em;
+}
+nav p{
+	display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 900;
+}
+ul.menu{
+	display: flex;
+	flex-direction: column;
+	justify-content: center; 
+	height: 0;
+	display: none;
+	transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
+}
+#navigation{
+	background-color: #5C5C5C;
+	display: flex;
+	transition: 0s;
+	width: 100%; 
+}
+
+.menu{
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+	list-style-type: none;
+	margin-top: 50px;
+}
+#check{
+	display: none;
+}
+.checkbtn{
+	font-size: 3em;
+	color: white;
+}
+.close{
+	display: none;
+	color: white;
+}
+#check:checked~.menu{
+	visibility: visible;
+	display: block;
+}
+#check:checked~.open{
+	display: none;
+}
+#check:checked~.close{
+	display: block;
+}
+section{
+	display: flex;
+	flex-direction: column;
+	margin: 10% 0;
+}
+#section_form{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+#section_table{
+	display: flex;
+	flex-wrap: wrap;
+}
+input{
+	width: 80%;
+}
+#btnsubmit{
+	width: 100%;
+}
+main p{
+	margin: 10%;
+	line-height: 1.65em;
+	font-size: 11pt;
+}
+h3{
+	font-size: 20px;
+}
+form{
+	width: 100%;
+}
+footer{
+	background-color: black;
+	color: white;
+	display: flex;
+	width: 100%;
+    height: 100px;
+    bottom: 0;
+}
+footer p{
+	align-self: center;
+}
+@media only screen and (min-width: 950px) and (max-width: 1300px){
+	h4{
+		margin-top: 8%;
+	}
+	ul.menu{
+		display: flex;
+		flex-direction: row;
+		font-size: 11px;
+		width: 40%;
+		margin: 1.5%;
+		padding-left: 10%;
+	}
+	#navigation p{
+		width: 30%;
+		margin: 0;
+		margin-right: 40%; 
+	}
+	#check, .checkbtn{
+		display: none;
+	}
+	.user{
+		display: block;
+		width: 5%;
+		margin: 0;
+	}
+	#navigation{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-self: auto;
+	}
+	nav ul li{
+		padding: 0;
+		display: flex;
+		width: 33%;
+		align-self: end;
+	}
+}
+@media only screen and (min-width: 1301px){
+	h4{
+		margin-top: 8%;
+	}
+	ul.menu{
+		display: flex;
+		flex-direction: row;
+		font-size: 11px;
+		width: 40%;
+		margin: 1%;
+		padding-left: 10%;
+	}
+	#navigation p{
+		width: 30%;
+		margin: 0;
+		margin-right: 40%; 
+	}
+	#check, .checkbtn{
+		display: none;
+	}
+	.user{
+		display: block;
+		width: 5%;
+		margin: 0;
+	}
+	#navigation{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-self: auto;
+	}
+	nav ul li{
+		padding: 0;
+		display: flex;
+		width: 33%;
+		align-self: end;
+	}
+}	

@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+*{
+	margin: 0 auto;
+}
+h1{
+	font-family: 'Poppins', sans-serif;
+}
+h4{
+	margin: 5%;
+	text-align: center;
+	width: 100%;
+}
+a{
+	color: white;
+}
+body{
+	font-family: 'Montserrat', sans-serif;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+input{
+	font-family: 'Montserrat', sans-serif;
+}
+header{
+	display: flex;
+  	width: 100%;
+  	position: fixed;
+  	box-shadow: 0 0 7px 1px #00000057;
+}
+main{
+	color: black;
+	width: 100%;
+	height: 100%;
+}
+nav ul {
+  	display: none;
+  	padding: 0;
+  	margin: 0;
+  	width: 100%;
+}
+
+.logopagina{
+  	height: 100px;
+  	margin-right: 42%;
+  	padding: 0 20px;
+  	width: 150px;
+}
+nav ul li a{
+	color: white;
+	text-decoration: none;
+	padding-left: 5%;
+}
+
+nav ul li {
+	background-color: #5C5C5C;
+	width: 100%;
+	padding: 4% 0;
+	margin: 0;
+	font-size: 2em;
+}
+
+ul.menu{
+	display: flex;
+	flex-direction: column;
+	justify-content: center; 
+	height: 0;
+	display: none;
+	transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
+}
+#navigation{
+	background-color: #5C5C5C;
+	display: flex;
+	transition: 0s;
+	width: 100%;
+}
+
+.menu{
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+	list-style-type: none;
+	margin-top: 50px;
+}
+#check{
+	display: none;
+}
+.checkbtn{
+	font-size: 3em;
+	color: white;
+}
+.close{
+	display: none;
+}
+#check:checked~.menu{
+	visibility: visible;
+	display: block;
+}
+#check:checked~.open{
+	display: none;
+}
+#check:checked~.close{
+	display: block;
+}
+section{
+	display: flex;
+	flex-direction: column;
+	margin: 10% 0;
+}
+#section_form{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+#section_form div{
+	overflow: hidden;
+	font-size: 40px;
+	padding: 2%;
+	width: 100%;
+	margin: 5%;
+	border-bottom: 1px solid lightgrey;
+}
+
+#section_form div input{
+	border: none;
+	outline: none;
+	background: none;
+	color: black;
+	font-size: 10px;
+	float: left;
+	margin: 0 10px;
+	line-height: 1.65em;
+	font-size: 11pt;
+}
+input [type="text"], input[type="password"]{
+	background: rgba(144, 144, 144, 0.25);
+	border-radius: 3px;
+    border: none;
+    color: inherit;
+    display: block;
+    outline: 0;
+    text-decoration: none;
+    width: 100%;
+    font-size: 11pt;
+    letter-spacing: 0.0375em;
+}
+input [type="button"]{
+	background-color: #FF8110;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    width: 100%;
+    margin: 5%;
+	font-size: 11pt;
+}
+#add_row{
+	width: 100%;
+    margin: 5%;
+    font-size: 1em;
+    background-color: #F49F0A;
+    border-color: orange;
+    border-radius: 2%;
+    padding: 5%;
+    cursor: pointer;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+#add_row:active{
+	background-color: red; 
+}
+#section_table{
+	display: flex;
+	flex-wrap: wrap;
+}
+h3{
+	font-size: 20px;
+}
+nav p{
+	display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 900;
+}
+#container{
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+#cabecera{
+	display: flex;
+	margin: 0;
+}
+#cabecera p{
+	width: 20%;
+	text-align: center;
+}
+#containt_divs{
+	width: 100%;
+}
+#containt_divs div{
+	display: flex;
+	align-items: baseline;
+}
+#containt_divs div p{
+	padding: 2%;
+}
+button{
+	margin: 0;
+	background: none;
+	border: none;
+}
+footer{
+	background-color: black;
+	color: white;
+	display: flex;
+	width: 100%;
+    height: 100px;
+    bottom: 0;
+}
+footer p{
+	align-self: center;
+}
+
+/*Media queries computer*/
+@media only screen and (min-width: 950px) and (max-width: 1300px){
+	ul.menu{
+		display: flex;
+		flex-direction: row;
+		font-size: 11px;
+		width: 40%;
+		margin: 1.5%;
+		padding-left: 10%;
+	}
+	#navigation p{
+		width: 30%;
+		margin: 0;
+		margin-right: 40%; 
+	}
+	#check, .checkbtn{
+		display: none;
+	}
+	.user{
+		display: block;
+		width: 5%;
+		margin: 0;
+	}
+	#navigation{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-self: auto;
+	}
+	nav ul li{
+		padding: 0;
+		display: flex;
+		width: 33%;
+		align-self: end;
+	}
+	#section_form{
+		margin: 0;
+	}
+	#add_row{
+		color: white;
+		width: 90%;
+	}
+	#containt_divs div{
+		justify-content: flex-start;
+		display: flex;
+	}
+	#containt_divs div p {
+	    padding: 2%;
+	    width: 18%;
+	    text-align: center;
+	    margin: 0;
+	}
+	#cabecera p {
+    	width: 20%;
+    	padding: 2%;
+    	text-align: center;
+	}
+}
+@media only screen and (min-width: 1301px){
+	ul.menu{
+		display: flex;
+		flex-direction: row;
+		font-size: 11px;
+		width: 40%;
+		margin: 1%;
+		padding-left: 10%;
+	}
+	#navigation p{
+		width: 30%;
+		margin: 0;
+		margin-right: 40%; 
+	}
+	#check, .checkbtn{
+		display: none;
+	}
+	.user{
+		display: block;
+		width: 5%;
+		margin: 0;
+	}
+	#navigation{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-self: auto;
+	}
+	nav ul li{
+		padding: 0;
+		display: flex;
+		width: 33%;
+		align-self: end;
+	}#section_form{
+		margin: 0;
+	}
+	#add_row{
+		color: white;
+		width: 90%;
+	}
+	#containt_divs div p {
+	    padding: 2%;
+	    width: 20%;
+	    text-align: center;
+	}
+	#containt_divs div{
+		justify-content: flex-start;
+		display: flex;
+	}
+	#cabecera p {
+    	width: 20%;
+    	padding: 2%;
+    	text-align: center;
+	}
+}	
