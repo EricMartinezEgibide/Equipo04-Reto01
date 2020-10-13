@@ -31,7 +31,7 @@
 			
 			<p>AERONAUTICS ENGINES S.A</p>
 			<label for="checkuser" class="checkbtn user">
-				<i class="far fa-user"></i>
+				<a href="../index.html"><i class="far fa-user"></i></a>
 			</label>
 		</nav>
 	</header>
@@ -39,30 +39,28 @@
 		<section>
 			<form action="#" method="post">
 				<section id="section_form">
-					<h4>CREACIÓN / MODIFICACIÓN / ELIMINACIÓN DE AVISOS</h4>
-					<div>
+					<h4>AVISOS</h4>
+					<div class="iborder">
 						<input type="text" name="txTitulo2" id="txTitulo2" placeholder="Titulo" required/>
 					</div>
-					<div>
-						<textarea name="txDescripcion2" id="txDescripcion2" placeholder="Descripción del aviso." required></textarea>
+					<div class="iborder">
+						<textarea name="txDescripcion2" id="txDescripcion2" placeholder="Descripción del aviso" required></textarea>
 					</div>
-					<div>
 						<fieldset>
-							<legend>Elige la prioridad</legend>
-							<label>
-								<input type="radio" name="prioridad" id="rbBaja" value="Baja"> Baja
-							</label>
-							<label>
-								<input type="radio" name="prioridad" id="rbNormal" value="Normal"> Normal
-							</label>
-							<label>
-								<input type="radio" name="prioridad" id="rbAlta" value="Alta"> Alta
-							</label>
+							<legend>Elige la prioridad</legend><div id="prioridades">
+								<input type="radio" name="prioridad" id="rbBaja" value="Baja"> 
+								<label for="rbBaja">Baja</label>
+								<input type="radio" name="prioridad" id="rbNormal" value="Normal"> 
+								<label for="rbNormal">Normal</label>
+								<input type="radio" name="prioridad" id="rbAlta" value="Alta"> 
+								<label for="rbAlta">Alta</label>
+							</div>
+									
 						</fieldset>
 					</div>
 					<input type="button" name="btnsubmit" value="Enviar datos" class="principal" id="add_row" target="_blank" onclick="modificarAviso()" />
 				</section>
-
+			</form>
 				<section id="section_table">
 					<div id="container">
 						<div id="cabecera">
@@ -77,7 +75,7 @@
 						</div>
 					</div>
 				</section>
-			</form>
+			
 		</section>
 	</main>
 	<footer>

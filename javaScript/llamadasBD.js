@@ -1,5 +1,6 @@
 let usuarios = [];
 let avisos = [];
+let idLocal = "";
 
 
 //CONSULTAS PELIGROSAS
@@ -98,7 +99,7 @@ function iniciarSesion() {
         if (usuarios[i].nick == document.getElementById("txNick").value && usuarios[i].pass == document.getElementById("txPass").value) {
 
             //Una vez los credenciales son correctos abro la nueva página.
-            history.pushState('data to be passed', 'Title of the page', 'http://localhost:63342/Equipo04-Reto01/html/paginaprincipal/home.html');
+            history.pushState('', 'Home', 'http://localhost:63342/Equipo04-Reto01/html/paginaprincipal/home.html');
 
             //EXTRA!!!!!
 
@@ -124,8 +125,9 @@ function iniciarSesion() {
 
 }
 
-function registrarUsuario(){
+function registrarUsuario() {
     iniciarBD();
+
 
     //Primero obtenemos los datos introducidos en el formulario.
     let nombreLocal = document.getElementById("name").value;
@@ -137,9 +139,9 @@ function registrarUsuario(){
     let nickLocal = nombreLocal.charAt(0) + apellido1Local.charAt(0) + fechaActualSimple();
 
     //Compruebo de que el usuario ha rellenado todos los campos.
-    if(nombreLocal == "" || apellido1Local == "" || apellido2Local == "" || passLocal == ""){
+    if (nombreLocal == "" || apellido1Local == "" || apellido2Local == "" || passLocal == "") {
         alert("Tiene que rellenar todos los campos.")
-    }else{
+    } else {
 
         //Por último procedo a la creación de un nuevo usuario y a guardarlo en el localStorage.
         let usuario = {
@@ -150,8 +152,11 @@ function registrarUsuario(){
             pass: passLocal
         };
 
+
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        alert("El usuario ha sido registrado correctamente.")
+        location.reload();
     }
 
 
@@ -162,15 +167,15 @@ function crearUsuario() {//PARA TESTEOS
     //ES LO MISMO QUE LA FUNCIÓN "REGISTRAR USUARIO" SOLO QUE PARA PRUEBAS INTERNAS Y SIN GENERACIÓN DE NICK.
     iniciarBD();
 
-    let nombreLocal = document.getElementById("txNombre").value;
-    let apellido1Local = document.getElementById("txApellido1").value;
-    let apellido2Local = document.getElementById("txApellido2").value;
-    let nickLocal = document.getElementById("txNick2").value;
-    let passLocal = document.getElementById("txPass2").value;
+    let nombreLocal = document.getElementById("name").value;
+    let apellido1Local = document.getElementById("surname1").value;
+    let apellido2Local = document.getElementById("surname2").value;
+    let nickLocal = document.getElementById("nick").value;
+    let passLocal = document.getElementById("pass").value;
 
-    if(nombreLocal == "" || apellido1Local == "" || apellido2Local == "" || passLocal == "" || nickLocal == ""){
+    if (nombreLocal == "" || apellido1Local == "" || apellido2Local == "" || passLocal == "" || nickLocal == "") {
         alert("Tiene que rellenar todos los campos.")
-    }else{
+    } else {
         let usuario = {
             nombre: nombreLocal,
             apellido1: apellido1Local,
@@ -181,90 +186,75 @@ function crearUsuario() {//PARA TESTEOS
 
         usuarios.push(usuario);
         localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+        alert("Nuevo usuario añadido correctamente.")
+        location.reload();
     }
 
-}
+}//SOLO PARA DEBUG
 
-function borrarUsuario() {
+function borrarUsuario(idBoton) {
 
     iniciarBD();
 
-    //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
-    let encontrado = false;
+    //Transformo la id del botón en su número identificativo
+    let id = obtenerIdBotonEliminar(idBoton);
 
-    //Recojo el nick introducido por el usuario.
-    usuarioAEliminar = document.getElementById("nickname").value;
-
-    //Busco en el array una coincidencia con el nick y cuando lo localizo lo elimino mediante la función ".splice".
-    for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].nick == usuarioAEliminar) {
-            usuarios.splice(i, 1);
-            encontrado = true;
-        }
-    }
-
-    //Si "encontrado" sigue con el valor con el que fué instanciado significa que el usuario no existe.
-    if(encontrado == false){
-        alert("El usuario que desea eliminar no existe.")
-    }
+    //Borro el campo del array
+    usuarios.splice(id, 1);
 
     //Por último cargo la nueva colección de datos en "datosUsuarios" reemplazando los actuales.
     localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
 
+    alert("Usuario eliminado correctamente.")
+    location.reload();
 }
 
 function modificarUsuario() {
 
     iniciarBD()
 
-    //Creo las variables para poder referenciarlas fuera del for.
-    let nick;
-    let nombre;
-    let apellido1;
-    let apellido2;
-    let pass;
+    if (idLocal == "") {
+        registrarUsuario();
 
-    //Busco el objeto en localstorage y guardo los datos nuevos en variables.
-    for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].nick == document.getElementById("nickname").value) {
+    } else {
+        //Transformo la id del botón en su número identificativo
+        let id = obtenerIdBotonModificar(idLocal);
 
-            //Aunque no tenemos una base de datos SQL, he utilizado la variable nick como PK
-            //Es por ello que no almaceno el nick introducido en el formulario.
-            nick = usuarios[i].nick;
+        //Aunque no tenemos una base de datos SQL, he utilizado la variable nick como PK
+        //Es por ello que no almaceno el nick introducido en el formulario.
+        let nick = usuarios[id].nick;
 
-            //El resto de parámetros en cambio sí que son leídos y almacenados.
-            nombre = document.getElementById("name").value
-            apellido1 = document.getElementById("surname1").value
-            apellido2 = document.getElementById("surname2").value
-            pass = document.getElementById("pass").value
+        //El resto de parámetros en cambio sí que son leídos y almacenados.
+        let nombre = document.getElementById("name").value
+        let apellido1 = document.getElementById("surname1").value
+        let apellido2 = document.getElementById("surname2").value
+        let pass = document.getElementById("pass").value
 
-            //Borro el registro viejo para poderlo sustituir.
-            usuarios.splice(i, 1);
+        //Borro el registro viejo para poderlo sustituir.
+        usuarios.splice(id, 1);
+
+        //Creo un nuevo usuario con los nuevos datos.
+        let usuario = {
+            nombre: nombre,
+            apellido1: apellido1,
+            apellido2: apellido2,
+            nick: nick,
+            pass: pass
+        };
+
+
+        //Por último añado al nuevo usuario a localstorage (Siempre y cuando existiese.)
+        if (usuario.nick != null) {
+            usuarios.push(usuario);
+            localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
+            alert("Usuario modificado correctamente.")
+            location.reload()
+        } else {
+            //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
+            //alert("El usuario que está intentando modificar no existe.")
+            alert("El usuario que está intentando modificar no existe. Por lo que se creará el usuario.")
+
         }
-    }
-
-    //Creo un nuevo usuario con los nuevos datos.
-    let usuario = {
-        nombre: nombre,
-        apellido1: apellido1,
-        apellido2: apellido2,
-        nick: nick,
-        pass: pass
-    };
-
-    console.log(usuario.nick)
-
-    //Por último añado al nuevo usuario a localstorage (Siempre y cuando existiese.)
-    if (usuario.nick != null) {
-        usuarios.push(usuario);
-        localStorage.setItem('datosUsuarios', JSON.stringify(usuarios));
-    }else{
-        //Si el valor del nick es null, significaría que no existe ningún usuario con el nick introducido en el formulario.
-        //alert("El usuario que está intentando modificar no existe.")
-
-        //NUEVO Ésto se debe a que la nueva interfaz de usuario utiliza en mismo botón para editar y para crear.
-        crearUsuario();
-
     }
 
 
@@ -278,7 +268,13 @@ function leerUsuarios() {
 
     for (let i = 0; i < usuarios.length; i++) {
         //Creo un nuevo array de usuarios con la nomenclatura que han definido en la tabla.
-        let usuario = {nombre: usuarios[i].nombre, apellido1: usuarios[i].apellido1, apellido2: usuarios[i].apellido2, nick: usuarios[i].nick, pass: usuarios[i].pass};
+        let usuario = {
+            nombre: usuarios[i].nombre,
+            apellido1: usuarios[i].apellido1,
+            apellido2: usuarios[i].apellido2,
+            nick: usuarios[i].nick,
+            pass: usuarios[i].pass
+        };
         usuariosTabla.push(usuario);
 
 
@@ -290,19 +286,21 @@ function leerUsuarios() {
 }
 
 function rellenarCamposUsuario(idBoton) {
-
     iniciarBD();
 
-    let id = obtenerIdBoton(idBoton)
+    //Almacenamos la id para futuros usos.
+    idLocal = idBoton;
+
+    let id = obtenerIdBotonModificar(idBoton)
     //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
 
 
-            //Símplemente relleno los datos del formulario con los que hay en el objeto que coincida con el nick.
-            document.getElementById("nickname").value = usuarios[id].nick;
-            document.getElementById("name").value = usuarios[id].nombre;
-            document.getElementById("surname1").value = usuarios[id].apellido1;
-            document.getElementById("surname2").value = usuarios[id].apellido2;
-            document.getElementById("pass").value = usuarios[id].pass;
+    //Símplemente relleno los datos del formulario con los que hay en el objeto que coincida con el nick.
+
+    document.getElementById("name").value = usuarios[id].nombre;
+    document.getElementById("surname1").value = usuarios[id].apellido1;
+    document.getElementById("surname2").value = usuarios[id].apellido2;
+    document.getElementById("pass").value = usuarios[id].pass;
 
 
 }
@@ -322,14 +320,14 @@ function crearAviso() {
         prioridadLocal = 0;
     } else if (document.getElementById("rbNormal").checked) {
         prioridadLocal = 1;
-    } else if (document.getElementById("rbAlta").checked){
+    } else if (document.getElementById("rbAlta").checked) {
         prioridadLocal = 2;
     }
 
     //Compruebo de que el usuario ha rellenado todos los campos.
-    if(tituloLocal == "" || descripcionLocal == "" || prioridadLocal == -1){
+    if (tituloLocal == "" || descripcionLocal == "" || prioridadLocal == -1) {
         alert("Tiene que rellenar todos los campos.")
-    }else{
+    } else {
         let fechaLocal = fechaActualCompleja();
 
         //Por último procedo a la creación de un nuevo aviso y a guardarlo en el localStorage.
@@ -337,43 +335,34 @@ function crearAviso() {
             titulo: tituloLocal,
             descripcion: descripcionLocal,
             prioridad: prioridadLocal,
-            fecha: fechaLocal};
+            fecha: fechaLocal
+        };
 
         avisos.push(aviso);
 
         localStorage.setItem('datosAvisos', JSON.stringify(avisos));
-        alert("¡Se ha creado el aviso!")
+        location.reload();
+        alert("Aviso creado correctamente")
         location.reload();
     }
 
 
 }
 
-function borrarAviso() {
+function borrarAviso(idBoton) {
     iniciarBD();
 
-    //Creo un boolean para saber si se ha encontrado un aviso con ese nick o no.
-    let encontrado = false;
+    //Tratamos la id
+    id = obtenerIdBotonEliminar(idBoton);
 
-    //Recojo el titulo introducido por el usuario.
-    avisoABorrar = document.getElementById("txTitulo2").value;
+    //Elimino el aviso del array local
+    avisos.splice(id, 1);
 
-    //Busco en el array una coincidencia con el titulo y cuando lo localizo lo elimino mediante la función ".splice".
-    for (let i = 0; i < avisos.length; i++) {
-        if (avisos[i].titulo == avisoABorrar) {
-            avisos.splice(i, 1);
-            encontrado = true;
-        }
-    }
-
-    //Si "encontrado" sigue con el valor con el que fué instanciado significa que el aviso no existe.
-    if(encontrado == false){
-        alert("El aviso que intenta eliminar no existe.")
-    }
-
+    //Actualizo los datos en el storage
     localStorage.setItem('datosAvisos', JSON.stringify(avisos));
-    alert("¡Se ha eliminado el aviso!")
     location.reload();
+    alert("Aviso borrado correctamente")
+
 }
 
 function leerAvisos() {
@@ -403,119 +392,122 @@ function modificarAviso() {
 
     iniciarBD()
 
-    //Creo las variables para poder referenciarlas fuera del for.
-    let titulo;
-    let descripcion;
-    let prioridad;
-    let fecha;
+    if (idLocal == "") {
+        crearAviso();
+    } else {
 
-    //Busco el objeto en localstorage y guardo los datos nuevos en variables.
-    for (let i = 0; i < avisos.length; i++) {
-        if (avisos[i].titulo == document.getElementById("txTitulo2").value) {
+        let id = obtenerIdBotonModificar(idLocal);
 
-            //Al igual que el "nick" del usuario, el "título" es la PK de los elementos "avisos".
-            titulo = avisos[i].titulo;
-            descripcion = document.getElementById("txDescripcion2").value;
+        //Creo las variables para poder referenciarlas fuera del for.
+        let prioridad;
+        let fecha;
 
-            //Una vez mas comprobamos qué radio button está activado.
-            if (document.getElementById("rbBaja").checked) {
-                prioridad = 0;
-            } else if (document.getElementById("rbNormal").checked) {
-                prioridad = 1;
-            } else {
-                prioridad = 2;
-            }
 
-            //La fecha de creación no la modificamos para evitar cualquier tipo de adulterio.
-            fecha = avisos[i].fecha;
+        let titulo = document.getElementById("txTitulo2").value;
+        let descripcion = document.getElementById("txDescripcion2").value;
 
-            //Borro el registro viejo para poderlo sustituir.
-            avisos.splice(i, 1);
+        //Una vez mas comprobamos qué radio button está activado.
+        if (document.getElementById("rbBaja").checked) {
+            prioridad = 0;
+        } else if (document.getElementById("rbNormal").checked) {
+            prioridad = 1;
+        } else {
+            prioridad = 2;
+        }
+
+        //La fecha de creación no la modificamos para evitar cualquier tipo de adulterio.
+        fecha = avisos[id].fecha;
+
+        //Borro el registro viejo para poderlo sustituir.
+        avisos.splice(id, 1);
+
+
+        //Creo un nuevo aviso con los datos introducidos por el usuario.
+        let aviso = {
+            titulo: titulo,
+            descripcion: descripcion,
+            prioridad: prioridad,
+            fecha: fecha
+        };
+
+        //Por último añado el nuevo aviso a localstorage (Siempre y cuando existiese.)
+        if (aviso.titulo != null) {
+            avisos.push(aviso);
+            localStorage.setItem('datosAvisos', JSON.stringify(avisos));
+            location.reload();
+            alert("Aviso modificado correctamente.")
+        } else {
+            alert("El aviso que está intentando modificar no existe. Por lo que se creará el aviso.")
+            crearAviso();
         }
     }
 
-    //Creo un nuevo aviso con los datos introducidos por el usuario.
-    let aviso = {
-        titulo: titulo,
-        descripcion: descripcion,
-        prioridad: prioridad,
-        fecha: fecha
-    };
 
-    //Por último añado el nuevo aviso a localstorage (Siempre y cuando existiese.)
-    if (aviso.titulo != null) {
-        avisos.push(aviso);
-        localStorage.setItem('datosAvisos', JSON.stringify(avisos));
-        alert("¡Se ha modificado el aviso!")
-        location.reload();
-    }else{
-        alert("El aviso que está intentando modificar no existe. Por lo que se creará el aviso.")
-        crearAviso();
-    }
 
 }
 
 function rellenarCamposAviso(idBoton) {
 
     iniciarBD();
+    idLocal = idBoton;
 
-    let id = obtenerIdBoton(idBoton)
+    let id = obtenerIdBotonModificar(idBoton)
 
-            document.getElementById("txTitulo2").value = avisos[id].titulo;
-            document.getElementById("txDescripcion2").value = avisos[id].descripcion;
+    document.getElementById("txTitulo2").value = avisos[id].titulo;
+    document.getElementById("txDescripcion2").value = avisos[id].descripcion;
 
-            //Lo único un poco peculiar aquí es éste switch que se encarga de marcar el Radio button correcto.
-            switch (avisos[id].prioridad){
+    //Lo único un poco peculiar aquí es éste switch que se encarga de marcar el Radio button correcto.
+    switch (avisos[id].prioridad) {
 
-                case 0:
-                    document.getElementById("rbBaja").checked = true;
-                    break;
+        case 0:
+            document.getElementById("rbBaja").checked = true;
+            break;
 
-                case 1:
-                    document.getElementById("rbNormal").checked = true;
-                    break;
+        case 1:
+            document.getElementById("rbNormal").checked = true;
+            break;
 
-                case 2:
-                    document.getElementById("rbAlta").checked = true;
-                    break;
+        case 2:
+            document.getElementById("rbAlta").checked = true;
+            break;
 
-            }
-        /*
-        //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
-    encontrado = false;
+    }
+    /*
+    //Creo un boolean para saber si se ha encontrado un usuario con ese nick o no.
+encontrado = false;
 
-    //Primero busco el aviso en el local storage en base al título introducido por el usuario.
-    for (let i = 0; i < avisos.length; i++) {
+//Primero busco el aviso en el local storage en base al título introducido por el usuario.
+for (let i = 0; i < avisos.length; i++) {
 
-        if (avisos[i].titulo == document.getElementById("txTitulo2").value) {//Una vez localizado añado los datos en los campos.
-            document.getElementById("txTitulo2").value = avisos[i].titulo;
-            document.getElementById("txDescripcion2").value = avisos[i].descripcion;
+    if (avisos[i].titulo == document.getElementById("txTitulo2").value) {//Una vez localizado añado los datos en los campos.
+        document.getElementById("txTitulo2").value = avisos[i].titulo;
+        document.getElementById("txDescripcion2").value = avisos[i].descripcion;
 
-            //Lo único un poco peculiar aquí es éste switch que se encarga de marcar el Radio button correcto.
-            switch (avisos[i].prioridad){
+        //Lo único un poco peculiar aquí es éste switch que se encarga de marcar el Radio button correcto.
+        switch (avisos[i].prioridad){
 
-                case 0:
-                    document.getElementById("rbBaja").checked = true;
-                    break;
+            case 0:
+                document.getElementById("rbBaja").checked = true;
+                break;
 
-                case 1:
-                    document.getElementById("rbNormal").checked = true;
-                    break;
+            case 1:
+                document.getElementById("rbNormal").checked = true;
+                break;
 
-                case 2:
-                    document.getElementById("rbAlta").checked = true;
-                    break;
-
-            }
-
-            encontrado = true;
+            case 2:
+                document.getElementById("rbAlta").checked = true;
+                break;
 
         }
-        //Si "encontrado" sigue con el valor con el que fué instanciado significa que el usuario no existe.
-    if(encontrado == false){
-        alert("El aviso que intenta buscar no existe.")
+
+        encontrado = true;
+
     }
-         */
+    //Si "encontrado" sigue con el valor con el que fué instanciado significa que el usuario no existe.
+if(encontrado == false){
+    alert("El aviso que intenta buscar no existe.")
+}
+     */
 }
 
 
@@ -538,7 +530,7 @@ function fechaActualCompleja() {
 }
 
 //"fechaActualSimple: Guarda la fecha como una concatenación de números."
-function fechaActualSimple(){
+function fechaActualSimple() {
     var fecha = new Date();
     var fecha = fecha.getDate() + ""
         + (fecha.getMonth() + 1) + ""
@@ -548,7 +540,7 @@ function fechaActualSimple(){
 }
 
 //GENERADORES DE INTERFAZ
-function generarInterfazUsuario(){
+function generarInterfazUsuario() {
     iniciarBD();
 
     let divGeneral = "";
@@ -560,143 +552,14 @@ function generarInterfazUsuario(){
         divLocal += "<div>";//Abrimos div
 
 
-
-            //AÑADO LOS CAMPOS
-            divLocal += "<p>"
-            divLocal += usuarios[i].nick
-            divLocal += "</p>"
-            divLocal += usuarios[i].nombre
-            divLocal += "</p>"
-            divLocal += usuarios[i].apellido1
-            divLocal += "</p>"
-            divLocal += usuarios[i].apellido2
-            divLocal += "</p>"
-
-            //BOTONES CON SU ID
-            divLocal += '<button id="btModificar'
-            divLocal += i
-            divLocal += '" onclick = "rellenarCamposUsuario(this.id)"><i class="fas fa-user-edit"></i></button>'
-
-            divLocal += '<button id="btEliminar'
-            divLocal += i
-            divLocal += '" onclick = "borrarUsuario(this.id)"><i class="fas fa-user-times"></i></button>'
-
-
-
-            //Cierro el div.
-            divLocal += "</div>";
-
-            //Concateno el resultado.
-            divGeneral += divLocal;
-    }
-
-
-        console.log(divGeneral)
-
-    //ENVIAR EL divGeneral
-        avisoABorrar = document.getElementById("containt_divs").insertAdjacentHTML("beforeend",divGeneral);
-
-    /*
-
-
-                <div>
-					<p>Nick</p>
-					<p>Pedro</p>
-					<p>Gutierrez</p>
-					<p>Perez</p>
-					<button id="btModificar1" onclick = "modificarUsuario()">Modificar usuario</button>
-					<button id="btEliminar1" onclick = "eliminar()">Eliminar usuario</button>
-				</div>
-
-
-
-
-
-    <html>
-	<head>
-		<title>prueba</title>
-	</head>
-	<body>
-		<form>
-			<div id="contenedor">
-
-				<div>
-					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
-					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
-					&nbsp;
-					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
-				</div>
-				<div>
-					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
-					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
-					&nbsp;
-					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
-				</div>
-				<div>
-					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
-					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
-					&nbsp;
-					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
-				</div>
-				<div>
-					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
-					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
-					&nbsp;
-					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
-				</div>
-				<div>
-					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
-					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
-					&nbsp;
-					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
-				</div>
-				<div>
-					<p>Pedro / Lopez / Alonso / pla241194 / 456789 &nbsp;
-					<input type="button" name="modificar" value="modificar" id="bt2_modificar"/>
-					&nbsp;
-					<input type="button" name="eliminar" value="eliminar" id="bt2_eliminar"/></p>
-				</div>
-			</div>
-		</form>
-	</body>
-</html>
-     */
-
-
-
-
-}
-function generarInterfazAvisos() {
-    iniciarBD();
-
-    let divGeneral = "";
-
-
-    for (let i = 0; i < avisos.length; i++) {
-        let divLocal = "";
-
-        divLocal += "<div>";//Abrimos div
-
-
-
         //AÑADO LOS CAMPOS
-        divLocal += "<p>"
-        divLocal += avisos[i].titulo
-        divLocal += "</p>"
-        divLocal += avisos[i].descripcion
-        divLocal += "</p>"
-        divLocal += avisos[i].prioridad
-        divLocal += "</p>"
+        divLocal += "<p>" + usuarios[i].nick + "</p><p>" + usuarios[i].nombre + "</p><p>" + usuarios[i].apellido1 + "</p><p>" + usuarios[i].apellido2 + "</p>"
+
 
         //BOTONES CON SU ID
-        divLocal += '<button id="btModificar'
-        divLocal += i
-        divLocal += '" onclick = "rellenarCamposAviso(this.id)">Modificar aviso</button>'
+        divLocal += '<button id="btModificar' + i + '" onclick = "rellenarCamposUsuario(this.id)"><i class="fas fa-user-edit"></i></button>'
 
-        divLocal += '<button id="btEliminar'
-        divLocal += i
-        divLocal += '" onclick = "borrarAviso(this.id)">Borrar aviso</button>'
-
+        divLocal += '<button id="btEliminar' + i + '" onclick = "borrarUsuario(this.id)"><i class="fas fa-user-times"></i></button>'
 
 
         //Cierro el div.
@@ -710,12 +573,65 @@ function generarInterfazAvisos() {
     console.log(divGeneral)
 
     //ENVIAR EL divGeneral
-    avisoABorrar = document.getElementById("containt_divs").insertAdjacentHTML("beforeend",divGeneral);
+    document.getElementById("containt_divs").insertAdjacentHTML("beforeend", divGeneral);
+
 }
 
-//Urko utilizar también
-function obtenerIdBoton(idBoton){
+function generarInterfazAvisos() {
+    iniciarBD();
 
+    let divGeneral = "";
+
+
+    for (let i = 0; i < avisos.length; i++) {
+        let divLocal = "";
+
+        divLocal += "<div>";//Abrimos div
+
+
+        //AÑADO LOS CAMPOS
+        divLocal += "<p>"
+        divLocal += avisos[i].titulo
+        divLocal += "</p><p>"
+        divLocal += avisos[i].descripcion
+        divLocal += "</p><p>"
+        divLocal += avisos[i].prioridad
+        divLocal += "</p>"
+
+        //BOTONES CON SU ID
+        divLocal += '<button id="btModificar'
+        divLocal += i
+        divLocal += '" onclick = "rellenarCamposAviso(this.id)"><i class="fas fa-user-edit"></i></button>'
+
+        divLocal += '<button id="btEliminar'
+        divLocal += i
+        divLocal += '" onclick = "borrarAviso(this.id)"><i class="fas fa-user-times"></i></button>'
+
+
+        //Cierro el div.
+        divLocal += "</div>";
+
+        //Concateno el resultado.
+        divGeneral += divLocal;
+    }
+
+
+    console.log(divGeneral)
+
+    //ENVIAR EL divGeneral
+    avisoABorrar = document.getElementById("containt_divs").insertAdjacentHTML("beforeend", divGeneral);
+}
+
+
+//Obtener la posición de los arrays en base a su ID
+function obtenerIdBotonEliminar(idBoton) {
+
+    let ultimoCaracter = idBoton.replace('btEliminar', '');
+    let intId = parseInt(ultimoCaracter)
+    return intId;
+}
+
+function obtenerIdBotonModificar(idBoton) {
     let ultimoCaracter = idBoton.replace('btModificar', '');
     let intId = parseInt(ultimoCaracter)
     return intId;

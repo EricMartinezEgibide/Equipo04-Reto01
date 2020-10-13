@@ -14,6 +14,9 @@ h4{
 	text-align: center;
 	width: 100%;
 }
+a{
+	color: white;
+}
 body{
 	font-family: 'Montserrat', sans-serif;
 	display: flex;
@@ -22,7 +25,6 @@ body{
 }
 input{
 	font-family: 'Montserrat', sans-serif;
-
 }
 header{
 	display: flex;
@@ -74,7 +76,7 @@ ul.menu{
 	background-color: #5C5C5C;
 	display: flex;
 	transition: 0s;
-	width: 100%; 
+	width: 100%;
 }
 
 .menu{
@@ -157,19 +159,21 @@ input [type="button"]{
 #add_row{
 	width: 100%;
     margin: 5%;
+    font-size: 1em;
     background-color: #F49F0A;
     border-color: orange;
     border-radius: 2%;
     padding: 5%;
+    cursor: pointer;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+#add_row:active{
+	background-color: red; 
 }
 #section_table{
 	display: flex;
 	flex-wrap: wrap;
-	margin-bottom: 25%;
-}
-th, td{
-	font-size: 10px;
-	font-weight: bold;
 }
 h3{
 	font-size: 20px;
@@ -183,19 +187,30 @@ nav p{
 #container{
 	display: flex;
 	flex-direction: column;
+	margin: 0;
 }
 #cabecera{
 	display: flex;
+	margin: 0;
 }
 #cabecera p{
 	width: 20%;
 	text-align: center;
 }
+#containt_divs{
+	width: 100%;
+}
 #containt_divs div{
 	display: flex;
+	align-items: baseline;
 }
 #containt_divs div p{
 	padding: 2%;
+}
+button{
+	margin: 0;
+	background: none;
+	border: none;
 }
 footer{
 	background-color: black;
@@ -203,46 +218,41 @@ footer{
 	display: flex;
 	width: 100%;
     height: 100px;
-    position: fixed;
     bottom: 0;
 }
 footer p{
 	align-self: center;
 }
-/*Media queries tablet*/
-@media only screen and (min-width: 450px) and (max-width: 900px){
-	nav{
-		display: flex;
-	}
-	ul.menu{
-		display: flex;
-		flex-direction: row;
-		align-items: flex-end;
-		text-align: center;
-	}
-	#check, .checkbtn{
-		display: none;
-	}
-	nav ul li a {
-		padding: 10%;
-	}
-	nav ul li a:hover{
-		background-color: #f49f0a;
-	}
-}
+
 /*Media queries computer*/
-@media only screen and (min-width: 901px){
+@media only screen and (min-width: 950px) and (max-width: 1300px){
 	ul.menu{
 		display: flex;
-		height: 100px;
 		flex-direction: row;
-		align-self: center;
+		font-size: 11px;
+		width: 40%;
+		margin: 1.5%;
+		padding-left: 10%;
+	}
+	#navigation p{
+		width: 30%;
+		margin: 0;
+		margin-right: 40%; 
 	}
 	#check, .checkbtn{
 		display: none;
+	}
+	.user{
+		display: block;
+		width: 5%;
+		margin: 0;
 	}
 	#navigation{
-		height: 200px;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-self: auto;
 	}
 	nav ul li{
 		padding: 0;
@@ -250,4 +260,82 @@ footer p{
 		width: 33%;
 		align-self: end;
 	}
+	#section_form{
+		margin: 0;
+	}
+	#add_row{
+		color: white;
+		width: 90%;
+	}
+	#containt_divs div{
+		justify-content: flex-start;
+		display: flex;
+	}
+	#containt_divs div p {
+	    padding: 2%;
+	    width: 18%;
+	    text-align: center;
+	    margin: 0;
+	}
+	#cabecera p {
+    	width: 20%;
+    	padding: 2%;
+    	text-align: center;
+	}
 }
+@media only screen and (min-width: 1301px){
+	ul.menu{
+		display: flex;
+		flex-direction: row;
+		font-size: 11px;
+		width: 40%;
+		margin: 1%;
+		padding-left: 10%;
+	}
+	#navigation p{
+		width: 30%;
+		margin: 0;
+		margin-right: 40%; 
+	}
+	#check, .checkbtn{
+		display: none;
+	}
+	.user{
+		display: block;
+		width: 5%;
+		margin: 0;
+	}
+	#navigation{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-self: auto;
+	}
+	nav ul li{
+		padding: 0;
+		display: flex;
+		width: 33%;
+		align-self: end;
+	}#section_form{
+		margin: 0;
+	}
+	#add_row{
+		color: white;
+		width: 90%;
+	}
+	#containt_divs div p {
+	    padding: 2%;
+	    width: 20%;
+	    text-align: center;
+	}
+	#containt_divs div{
+		justify-content: flex-start;
+		display: flex;
+	}
+	#cabecera p {
+    	width: 20%;
+    	padding: 2%;
+    	text-align: center;
+	}
+}	

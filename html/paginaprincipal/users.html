@@ -31,7 +31,7 @@
 
 			<p>AERONAUTICS ENGINES S.A</p>
 			<label for="checkuser" class="checkbtn user">
-				<i class="far fa-user"></i>
+				<a href="../index.html"><i class="far fa-user"></i></a>
 			</label>
 		</nav>
 	</header>
@@ -50,15 +50,14 @@
 						<input type="text" name="surname2" id="surname2" placeholder="Segundo apellido" required/>
 					</div>
 					<div>
-						<input type="text" name="nick" id="nickname" placeholder="Alias" required/>
-					</div>
-					<div>
 						<input type="password" name="pass" id="pass" placeholder="Contraseña" required/>
 					</div>
-						<input type="button" name="btnsubmit" value="Enviar datos" class="principal" id="add_row" target="_blank" onclick="modificarUsuario()" />
 				</section>
-						
-				<section id="section_table">
+			</form>
+
+			<button name="btnsubmit" class="principal" id="add_row" target="_blank" onclick="modificarUsuario()">Enviar datos</button>
+
+			<section id="section_table">
 					<div id="container">
 						<div id="cabecera">
 							<p>Nick</p>
@@ -73,7 +72,7 @@
 						</div>
 					</div>		
 				</section>
-			</form>
+			
 		</section>
 	</main>
 	<footer>
