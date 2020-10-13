@@ -99,8 +99,12 @@ function iniciarSesion() {
         if (usuarios[i].nick == document.getElementById("txNick").value && usuarios[i].pass == document.getElementById("txPass").value) {
 
             
-            //Una vez los credenciales son correctos abro la nueva página.
-            history.pushState('', 'Home', 'paginaprincipal/home.html');
+            //ESTO ES UN ERROR IMPOSIBLE DE ARREGLAR
+            //history.pushState('', 'Home', 'paginaprincipal/home.html');
+
+
+            //Alternativa al error.
+            window.open("paginaprincipal/home.html");
 
 
 
