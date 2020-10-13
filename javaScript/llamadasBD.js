@@ -603,6 +603,8 @@ function generarInterfazAvisos() {
         divLocal += avisos[i].descripcion
         divLocal += "</p><p>"
         divLocal += avisos[i].prioridad
+        divLocal += "</p><p>"
+        divLocal += avisos[i].fecha
         divLocal += "</p>"
 
         //BOTONES CON SU ID
