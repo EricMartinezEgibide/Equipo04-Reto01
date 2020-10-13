@@ -189,6 +189,16 @@ button{
 	background: none;
 	border: none;
 }
+
+.principal{
+	font-weight: bold;
+	color: white;
+}
+
+#cabecera{
+	font-weight: bold;
+}
+
 footer{
 	background-color: black;
 	color: white;
