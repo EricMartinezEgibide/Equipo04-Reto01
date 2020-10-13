@@ -98,8 +98,11 @@ function iniciarSesion() {
 
         if (usuarios[i].nick == document.getElementById("txNick").value && usuarios[i].pass == document.getElementById("txPass").value) {
 
+            
             //Una vez los credenciales son correctos abro la nueva página.
-            history.pushState('', 'Home', 'http://localhost:63342/Equipo04-Reto01/html/paginaprincipal/home.html');
+            history.pushState('', 'Home', 'paginaprincipal/home.html');
+
+
 
             //EXTRA!!!!!
 
