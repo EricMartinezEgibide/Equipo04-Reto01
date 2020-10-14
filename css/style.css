@@ -13,7 +13,7 @@ h1{
 body{
 	background: url(../img/saltop.jpg) no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
+	background-attachment: fixed; /*FIJAR EL MENÚ ARRIBA*/
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
 	margin: 2%;
@@ -27,11 +27,12 @@ header h1{
 	text-align: center;
 	display: flex;
 }
+/*Contenedor del login*/
 .login-box{
 	left: 50%;
 	position: absolute;
 	top: 50%;
-	transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%); /*Para alinearlo al mmedio*/
 	width: 350px;
 }
 .login-box h1{
@@ -44,7 +45,7 @@ header h1{
 }
 .textbox{
 	width: 100%;
-	overflow: hidden;
+	overflow: hidden; /*Para que el icono, con las rayas y el input esten alineados*/
 	font-size: 40px;
 	padding: 8px 0;
 	margin: 8px;
