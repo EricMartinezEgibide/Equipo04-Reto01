@@ -348,7 +348,6 @@ function crearAviso() {
         avisos.push(aviso);
 
         localStorage.setItem('datosAvisos', JSON.stringify(avisos));
-        location.reload();
         alert("Aviso creado correctamente")
         location.reload();
     }
