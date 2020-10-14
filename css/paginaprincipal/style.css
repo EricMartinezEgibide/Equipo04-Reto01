@@ -32,7 +32,7 @@ main{
 	color: black;
 	width: 100%;
 	height: 100%;
-}
+}/*Menu*/
 nav ul {
   	display: none;
   	padding: 0;
@@ -107,26 +107,15 @@ ul.menu{
 }
 #check:checked~.close{
 	display: block;
-}
+}/*Secciones*/
 section{
 	display: flex;
 	flex-direction: column;
 	margin: 10% 0;
 }
-#section_form{
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-#section_table{
-	display: flex;
-	flex-wrap: wrap;
-}
+
 input{
 	width: 80%;
-}
-#btnsubmit{
-	width: 100%;
 }
 main p{
 	margin: 10%;
@@ -150,6 +139,7 @@ footer{
 footer p{
 	align-self: center;
 }
+/*Ordenador*/
 @media only screen and (min-width: 950px) and (max-width: 1300px){
 	h4{
 		margin-top: 8%;

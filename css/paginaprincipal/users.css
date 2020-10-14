@@ -133,11 +133,11 @@ section{
 	font-size: 10px;
 	float: left;
 	margin: 0 10px;
-	line-height: 1.65em;
+	line-height: 1.65em; /**La altura de cada linea sera 1.65 mas grande que la del padre*/
 	font-size: 11pt;
 }
 input [type="text"], input[type="password"]{
-	background: rgba(144, 144, 144, 0.25);
+	background: rgba(144, 144, 144, 0.25); /*Colores del background con rgba*/
 	border-radius: 3px;
     border: none;
     color: inherit;
@@ -168,7 +168,7 @@ input [type="button"]{
     width: 90%;
     font-family: 'Montserrat', sans-serif;
 }
-#add_row:active{
+#add_row:active{ /*Cuando clickemos en el boton de enviar datos el bakground del boton se pondra rojo*/
 	background-color: red; 
 }
 #section_table{
