@@ -173,7 +173,10 @@ section{
 	width: 100%;
 }
 #containt_divs div p{
-	padding: 2%;
+	margin: 0;
+    padding: 2%;
+    width: 20%;
+    text-align: center;
 }
 #add_row{
     margin: 5%;
@@ -253,6 +256,33 @@ footer p{
 	#section_form{
 		margin: 0;
 	}
+	#btModificar0{
+		margin-left: 15%;
+	}
+	#btModificar1{
+		margin-left: 15%;
+	}
+	#btModificar2{
+		margin-left: 15%;
+	}
+	#btModificar3{
+		margin-left: 15%;
+	}
+	#btModificar4{
+		margin-left: 15%;
+	}
+	#btModificar5{
+		margin-left: 15%;
+	}
+	#btModificar6{
+		margin-left: 15%;
+	}
+	#btModificar7{
+		margin-left: 15%;
+	}
+	#btModificar8{
+		margin-left: 15%;
+	}
 }
 @media only screen and (min-width: 1301px){
 	ul.menu{
@@ -288,5 +318,32 @@ footer p{
 		display: flex;
 		width: 33%;
 		align-self: end;
+	}
+	#btModificar0{
+		margin-left: 15%;
+	}
+	#btModificar1{
+		margin-left: 15%;
+	}
+	#btModificar2{
+		margin-left: 15%;
+	}
+	#btModificar3{
+		margin-left: 15%;
+	}
+	#btModificar4{
+		margin-left: 15%;
+	}
+	#btModificar5{
+		margin-left: 15%;
+	}
+	#btModificar6{
+		margin-left: 15%;
+	}
+	#btModificar7{
+		margin-left: 15%;
+	}
+	#btModificar8{
+		margin-left: 15%;
 	}
 }	
